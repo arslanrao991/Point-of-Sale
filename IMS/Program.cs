@@ -22,11 +22,10 @@ namespace IMS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
-            string sqlConnectionString = "Data Source=DESKTOP-7GFBFE2;Initial Catalog=IMS;Integrated Security=True"; 
-            IProductView view = new Form1();
-            IProductRepository repo = new ProductRepository(sqlConnectionString);
-            new ProductPresenter(view, repo);
-            Application.Run((Form)view) ;
+            string sqlConnectionString = "Data Source=DESKTOP-7GFBFE2;Initial Catalog=IMS;Integrated Security=True";
+            IMainView mainView = new Form0();
+            new MainPresenter(mainView, sqlConnectionString);
+            Application.Run((Form)mainView) ;
         } 
     }
 }

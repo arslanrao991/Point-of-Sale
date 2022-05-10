@@ -29,6 +29,7 @@ namespace IMS.Views
             InitializeComponent();
             AssociateandRaiseViewEvents();
             tabControl1.TabPages.Remove(tabPage2);
+            button5.Click += delegate { this.Close(); };    
         }
 
         private void AssociateandRaiseViewEvents()
@@ -70,11 +71,32 @@ namespace IMS.Views
 
         public void SetProductListBindingSource(BindingSource productList)
         {
-            dataGridView1.DataSource = productList;
+            dataGridView.DataSource = productList;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+
+        }
+
+        //Singleton Pattern
+        private static Form1 instance;
+        public static Form1 GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new Form1();
+                instance.MdiParent = parentContainer;
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if(instance.WindowState == FormWindowState.Minimized)
+                    instance.WindowState = FormWindowState.Normal;
+                instance.BringToFront();
+            }
+            return instance;
 
         }
     }

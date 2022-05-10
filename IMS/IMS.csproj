@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Models\IProductRepository.cs" />
     <Compile Include="Models\ProductsModel.cs" />
+    <Compile Include="Presenter\MainPresenter.cs" />
     <Compile Include="Presenter\ProductPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Views\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\IProductView.cs" />
     <Compile Include="_Repositories\BaseRepository.cs" />
     <Compile Include="_Repositories\ProductRepository.cs" />

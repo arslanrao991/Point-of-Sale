@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace IMS.Views
 {
-    public partial class Form0 : Form
+    public partial class Form0 : Form, IMainView
     {
         public Form0()
         {
             InitializeComponent();
+            button1.Click += delegate { ShowProductView?.Invoke(this, EventArgs.Empty); };
         }
+
+        public event EventHandler ShowProductView;
     }
 }
