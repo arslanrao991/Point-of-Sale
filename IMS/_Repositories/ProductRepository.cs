@@ -57,11 +57,11 @@ namespace IMS._Repositories
                     {
                         if(reader.Read())
                             productModel.Id = (int)reader[0];
-                        productModel.Name = (string)reader["Name"].ToString();
-                        productModel.Category = (string)reader["Category"].ToString();
-                        productModel.Description = (string)reader["Description"].ToString();
-                        productModel.Quantity = (int)reader["Quantity"];
-                        productModel.PerUnitPrice = (int)reader["Product_Per_Unit_Price"];
+                        productModel.Name = (string)reader["Product_Name"].ToString();
+                        productModel.Category = (string)reader["Product_Category"].ToString();
+                        productModel.Description = (string)reader["Product_Description"].ToString();
+                        productModel.Quantity = (int)reader["Product_Quantity"];
+                        productModel.PerUnitPrice = (double)reader["Product_Per_Unit_Price"];
                     }
                     productList.Add(productModel);
                 }
