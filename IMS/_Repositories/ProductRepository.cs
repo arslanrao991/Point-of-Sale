@@ -49,14 +49,20 @@ namespace IMS._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT* FROM Products ORDER BY ID DEC";
+                command.CommandText = "SELECT* FROM Products ORDER BY ID DESC";
                 using (var reader = command.ExecuteReader())
                 {
                     var productModel = new ProductsModel();
-                    productModel.Id = (int)reader["ID"];
-                    productModel.Name = (string)reader["Name"].ToString();
-                    productModel.Category = (string)reader["Category"].ToString();
-                    productModel.Description = (string)reader["Description"].ToString();
+                    if (reader.HasRows)
+                    {
+                        if(reader.Read())
+                            productModel.Id = (int)reader[0];
+                        productModel.Name = (string)reader["Name"].ToString();
+                        productModel.Category = (string)reader["Category"].ToString();
+                        productModel.Description = (string)reader["Description"].ToString();
+                        productModel.Quantity = (int)reader["Quantity"];
+                        productModel.PerUnitPrice = (int)reader["Product_Per_Unit_Price"];
+                    }
                     productList.Add(productModel);
                 }
             }

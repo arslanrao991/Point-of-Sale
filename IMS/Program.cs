@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace IMS
 {
@@ -20,11 +21,12 @@ namespace IMS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string sqlConnectionString = "";
-            //IProductView view = new Form1();
-            //IProductRepository repo = new ProductRepository(sqlConnectionString);
-            //new ProductPresenter(view, repo);
-            Application.Run(new Form1());
-        }
+            //string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+            string sqlConnectionString = "Data Source=DESKTOP-7GFBFE2;Initial Catalog=IMS;Integrated Security=True"; 
+            IProductView view = new Form1();
+            IProductRepository repo = new ProductRepository(sqlConnectionString);
+            new ProductPresenter(view, repo);
+            Application.Run((Form)view) ;
+        } 
     }
 }

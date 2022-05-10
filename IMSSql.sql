@@ -1,6 +1,10 @@
 create database IMS
 use IMS
 
+select* from Products
+
+insert into Products values(100, 'Screw', '001', '001', 10, 14);
+
 create Table Products(
 	ID int NOT NULL PRIMARY KEY,
 	Product_Name varchar(50) NOT NULL,
@@ -32,7 +36,7 @@ create Table SupplyOrderDetails(
 	FOREIGN KEY(Product_ID ) REFERENCES Products(ID));
 
 
-create Table Payments()
+/*create Table Payments()*/
 
 	
 
@@ -69,7 +73,7 @@ create Table Sales(
 	Customer_ID int NOT NULL,
 	[Date] Date NOT NULL,
 	Total_Bill float NOT NULL,
-	Paid_Bill floast NOT NULL,
+	Paid_Bill float NOT NULL,
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(ID));
 
 create Table SalesDetails(
