@@ -23,7 +23,6 @@ namespace IMS.Views
         private bool isEdit;
         private bool issuccess;
         private string message;
-        private DataGridView dataGridView = new DataGridView();
 
         public Form1()
         {
@@ -40,9 +39,11 @@ namespace IMS.Views
                 if (e.KeyCode == Keys.Enter)
                     SearchEvent?.Invoke(this, EventArgs.Empty);
             };
+            //Other
         }
 
-        public string Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Id 
+        { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string SearchValue { get { return textBox1.Text; } set { textBox1.Text = value; } }
@@ -69,7 +70,12 @@ namespace IMS.Views
 
         public void SetProductListBindingSource(BindingSource productList)
         {
-            dataGridView.DataSource = productList;
+            dataGridView1.DataSource = productList;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
