@@ -18,12 +18,18 @@ create Table Supplier(
 
 create Table SupplyingOrder(
 	Supplier_ID int NOT NULL,
-	Order_ID int NOT NULL PRIMARY KEY,)
+	Order_ID int NOT NULL PRIMARY KEY,
+	Supplying_Date Date
+	FOREIGN KEY (Supplier_ID) REFERENCES Supplier(ID));
 
 
 
 create Table SupplyOrderDetails(
-	Supplying_Order_ID int NOT NULL,)
+	Supplying_Order_ID int NOT NULL,
+	Product_ID int NOT NULL, 
+	PRIMARY KEY(Supplying_Order_ID , Product_ID ),
+	FOREIGN KEY(Supplying_Order_ID ) REFERENCES SupplyingOrder(Order_ID ),
+	FOREIGN KEY(Product_ID ) REFERENCES Products(ID));
 
 
 create Table Payments()
@@ -60,12 +66,23 @@ create Table Stock(
 
 create Table Sales(
 	Sales_ID int NOT NULL PRIMARY KEY,
-	Product_ID int NOT NULL,
 	Customer_ID int NOT NULL,
 	[Date] Date NOT NULL,
-	FOREIGN KEY (Product_ID) REFERENCES Products(ID),
+	Total_Bill float NOT NULL,
+	Paid_Bill floast NOT NULL,
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(ID));
 
-create Table SalesDetails()
+create Table SalesDetails(
+	Sales_ID int NOT NULL,
+	Product_ID int NOT NULL,
+	Quantity int NOT NULL,
+	Per_Unit_Price float NOT NULL,
+	PRIMARY KEY(Sales_ID , Product_ID),
+	FOREIGN KEY (Sales_ID) REFERENCES Sales(Sales_ID),
+	FOREIGN KEY (Product_ID) REFERENCES Products(ID));
 
-create Table Receipt()
+create Table Receipt(
+	Receipt_ID int NOT NULL Primary Key,
+	Customer_ID int NOT NULL,
+	Paid_Price float NOT NULL,
+	FOREIGN KEY(Customer_ID) REFERENCES Customer(ID));
