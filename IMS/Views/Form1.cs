@@ -23,13 +23,13 @@ namespace IMS.Views
         private bool isEdit;
         private bool issuccess;
         private string message;
-        private DataGridView dataGridView = new DataGridView();
 
         public Form1()
         {
             InitializeComponent();
             AssociateandRaiseViewEvents();
             tabControl1.TabPages.Remove(tabPage2);
+            button5.Click += delegate { this.Close(); };    
         }
 
         private void AssociateandRaiseViewEvents()
@@ -40,9 +40,11 @@ namespace IMS.Views
                 if (e.KeyCode == Keys.Enter)
                     SearchEvent?.Invoke(this, EventArgs.Empty);
             };
+            //Other
         }
 
-        public string Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Id 
+        { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string SearchValue { get { return textBox1.Text; } set { textBox1.Text = value; } }
@@ -70,6 +72,32 @@ namespace IMS.Views
         public void SetProductListBindingSource(BindingSource productList)
         {
             dataGridView.DataSource = productList;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Singleton Pattern
+        private static Form1 instance;
+        public static Form1 GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new Form1();
+                instance.MdiParent = parentContainer;
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if(instance.WindowState == FormWindowState.Minimized)
+                    instance.WindowState = FormWindowState.Normal;
+                instance.BringToFront();
+            }
+            return instance;
+
         }
     }
 }

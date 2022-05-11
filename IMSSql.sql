@@ -1,6 +1,6 @@
 create database IMS
 use IMS
-drop table Products
+
 select* from Products
 
 insert into Products values(100, 'Screw', '001', '001', 10, 14);

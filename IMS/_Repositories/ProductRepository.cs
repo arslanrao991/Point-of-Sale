@@ -55,20 +55,24 @@ namespace IMS._Repositories
                     var productModel = new ProductsModel();
                     if (reader.HasRows)
                     {
-                        if(reader.Read())
-                            productModel.Id = (int)reader[0];
-                        productModel.Name = (string)reader["Product_Name"].ToString();
-                        productModel.Category = (string)reader["Product_Category"].ToString();
-                        productModel.Description = (string)reader["Product_Description"].ToString();
-                        productModel.Quantity = (int)reader["Product_Quantity"];
-                        productModel.PerUnitPrice = (double)reader["Product_Per_Unit_Price"];
+                        
+                        while (reader.Read())
+                        {
+                            productModel = new ProductsModel();
+                            productModel.Id = (int)reader["ID"];
+                            productModel.Name = (string)reader["Product_Name"].ToString();
+                            productModel.Category = (string)reader["Product_Category"].ToString();
+                            productModel.Description = (string)reader["Product_Description"].ToString();
+                            productModel.Quantity = (int)reader["Product_Quantity"];
+                            productModel.PerUnitPrice = (double)reader["Product_Per_Unit_Price"];
+                            productList.Add(productModel);
+                        }
                     }
-                    productList.Add(productModel);
+                    reader.Close();
+                    
                 }
             }
-
             return productList;
-
         }
 
         public IEnumerable<ProductsModel> GetByValue(string value)
