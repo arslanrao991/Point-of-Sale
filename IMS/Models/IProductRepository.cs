@@ -10,7 +10,7 @@ namespace IMS.Models
     {
         void Add(ProductsModel product);
         void Update(ProductsModel product);
-        void Delete(ProductsModel product);
+        void Delete(int productId);
         IEnumerable<ProductsModel> GetAll();
 
         IEnumerable<ProductsModel> GetByValue(string value);

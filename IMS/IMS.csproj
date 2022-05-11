@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Models\IProductRepository.cs" />
     <Compile Include="Models\ProductsModel.cs" />
+    <Compile Include="Presenter\Common\ModelDataValidation.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
     <Compile Include="Presenter\ProductPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -84,6 +85,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

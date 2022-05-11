@@ -15,9 +15,9 @@ namespace IMS.Views
         string Description { get; set; }
         string Category { get; set; }
 
-        int Quantity { get; set; }
+        string Quantity { get; set; }
 
-        double Price { get; set; }
+        string Price { get; set; }
 
         string SearchValue { get; set; }
         bool IsEdit { get; set; }

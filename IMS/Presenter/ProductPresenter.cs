@@ -25,10 +25,10 @@ namespace IMS.Presenter
             this.repository = repository;
 
             //Subscribe event handler method to view events
-            this.view.SaveEvent += SearchProduct;
+            this.view.SearchEvent += SearchProduct;
             this.view.AddNewEvent += AddNewProduct;
-            this.view.AddNewEvent += LoadSelectedProductToEdit;
-            this.view.AddNewEvent += DeleteSelectedProduct;
+            this.view.EditEvent += LoadSelectedProductToEdit;
+            this.view.DeleteEvent += DeleteSelectedProduct;
             this.view.SaveEvent += SaveProduct;
             this.view.CancelEvent += CancelAction;
 
@@ -50,27 +50,109 @@ namespace IMS.Presenter
 
         private void CancelAction(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFeilds();
         }
 
         private void SaveProduct(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var model = new ProductsModel();
+            model.Id = Convert.ToInt32(view.Id);
+            model.Name = view.Name;
+            model.Category = view.Category;
+            model.Description = view.Description;
+            model.Quantity = Convert.ToInt32(view.Quantity);
+            model.PerUnitPrice = Convert.ToDouble(view.Price);
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(model);
+                if(view.IsEdit)
+                {
+                    repository.Update(model);
+                    view.Message = "Product updated successfuly";
+
+                }
+                else
+                {
+                    repository.Add(model);
+                    view.Message = "Product added successfuly";
+                }
+                view.IsSuccessful = true;
+                LoadAllProductList();
+                CleanViewFeilds();
+
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = ex.Message;
+            }
+        }
+
+        private void CleanViewFeilds()
+        {
+            view.Id = "0";
+            view.Name = "";
+            view.Category = "";
+            view.Description="";
+            view.Quantity = "";
+            view.Price = "";
         }
 
         private void DeleteSelectedProduct(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var product = (ProductsModel)productBindingSource.Current;
+                repository.Delete(product.Id);
+                view.IsSuccessful = true;
+                view.Message = "Product Deleted Sucessfully";
+                LoadAllProductList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = "An error occured could not delete Product";
+            }
         }
 
         private void LoadSelectedProductToEdit(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var product = (ProductsModel)productBindingSource.Current;
+            view.Id = product.Id.ToString();
+            view.Name = product.Name;
+            view.Category = product.Category;
+            view.Description = product.Description;
+            view.Quantity  = product.Quantity.ToString();
+            view.Price = product.PerUnitPrice.ToString();
+            view.IsEdit = true;
+
         }
 
         private void AddNewProduct(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
+            var model = new ProductsModel();
+            model.Id = Convert.ToInt32(view.Id);
+            model.Name = view.Name;
+            model.Category = view.Category;
+            model.Description = view.Description;
+            model.Quantity = Convert.ToInt32(view.Quantity);
+            model.PerUnitPrice = Convert.ToDouble(view.Price);
+            if (view.IsEdit)
+            {
+                repository.Update(model);
+                view.Message = "Product updated successfuly";
+
+            }
+            else
+            {
+                
+                repository.Add(model);
+                view.Message = "Product added successfuly";
+            }
+            view.IsEdit = false;
+
         }
 
         private void SearchProduct(object sender, EventArgs e)

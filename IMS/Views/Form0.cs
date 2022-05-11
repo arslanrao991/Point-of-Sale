@@ -19,5 +19,10 @@ namespace IMS.Views
         }
 
         public event EventHandler ShowProductView;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

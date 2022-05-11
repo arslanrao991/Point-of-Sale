@@ -35,18 +35,59 @@ namespace IMS.Views
         private void AssociateandRaiseViewEvents()
         {
             button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            button7.Click += delegate
+            {
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Add(tabPage1);
+            };
+
+            button6.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Add(tabPage1);
+            };
+
             textBox1.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
                     SearchEvent?.Invoke(this, EventArgs.Empty);
             };
             //Other
+            //Add
+            button1.Click += delegate 
+            {
+                
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+                tabPage2.Text = "Add Product";
+            };
+
+            //Edit
+            button3.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+                tabPage2.Text = "Edit Product";
+            };
+
+            //Delete 
+            button2.Click += delegate
+            {
+                DeleteEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+               
+            };
         }
 
         public string Id 
-        { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        { get { return textBox2.Text; } set { textBox2.Text = value; } }
+        public string Name
+        { get { return textBox3.Text; } set { textBox3.Text = value; } }
+        public string Description { get { return textBox5.Text; } set { textBox5.Text = value; } }
+        public string Category { get { return textBox4.Text; } set { textBox4.Text = value; } }
         public string SearchValue { get { return textBox1.Text; } set { textBox1.Text = value; } }
         public bool IsEdit { get { return isEdit; } set { isEdit = value; } }
         public bool IsSuccessful 
@@ -59,8 +100,8 @@ namespace IMS.Views
             get { return message; }
             set { message = value; }
         }
-        public int Quantity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public double Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Quantity { get { return textBox6.Text; } set { textBox6.Text = value; } }
+        public string Price { get { return textBox7.Text; } set { textBox7.Text = value; } }
 
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
@@ -97,6 +138,31 @@ namespace IMS.Views
                 instance.BringToFront();
             }
             return instance;
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //tabControl1.TabPages.Remove(tabPage1);
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
 
         }
     }
