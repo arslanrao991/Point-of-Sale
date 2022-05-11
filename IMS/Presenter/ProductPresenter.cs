@@ -152,6 +152,7 @@ namespace IMS.Presenter
                 view.Message = "Product added successfuly";
             }
             view.IsEdit = false;
+            LoadAllProductList();
 
         }
 

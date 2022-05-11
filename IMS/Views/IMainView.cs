@@ -9,6 +9,8 @@ namespace IMS.Views
     public interface IMainView
     {
         event EventHandler ShowProductView;
+        event EventHandler ShowCustomerView;
+        event EventHandler ShowSupplierView;
 
     }
 }

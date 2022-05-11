@@ -16,9 +16,13 @@ namespace IMS.Views
         {
             InitializeComponent();
             button1.Click += delegate { ShowProductView?.Invoke(this, EventArgs.Empty); };
+            button3.Click += delegate { ShowCustomerView?.Invoke(this, EventArgs.Empty); };
+            button4.Click += delegate { ShowSupplierView?.Invoke(this, EventArgs.Empty); };
         }
 
         public event EventHandler ShowProductView;
+        public event EventHandler ShowSupplierView;
+        public event EventHandler ShowCustomerView;
 
         private void button1_Click(object sender, EventArgs e)
         {
