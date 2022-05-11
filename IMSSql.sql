@@ -1,6 +1,6 @@
 create database IMS
 use IMS
-
+drop table Products
 select* from Products
 
 insert into Products values(100, 'Screw', '001', '001', 10, 14);
@@ -10,7 +10,7 @@ create Table Products(
 	Product_Name varchar(50) NOT NULL,
 	Product_Description varchar(50),
 	Product_Category varchar(50),
-	Product_Quantity varchar(50),
+	Product_Quantity int,
 	Product_Per_Unit_Price float);
 
 create Table Supplier(
