@@ -15,6 +15,59 @@ namespace IMS.Views
         public Form2()
         {
             InitializeComponent();
+            AssociateandRaiseViewEvents();
+            tabControl1.TabPages.Remove(tabPage2);
+            button5.Click += delegate { this.Close(); };
+        }
+
+        private void AssociateandRaiseViewEvents()
+        {
+            button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            button7.Click += delegate
+            {
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Add(tabPage1);
+            };
+
+            button6.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Add(tabPage1);
+            };
+
+            textBox1.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                    SearchEvent?.Invoke(this, EventArgs.Empty);
+            };
+            //Other
+            //Add
+            button1.Click += delegate
+            {
+
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+                tabPage2.Text = "Add Product";
+            };
+
+            //Edit
+            button3.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+                tabPage2.Text = "Edit Product";
+            };
+
+            //Delete 
+            button2.Click += delegate
+            {
+                DeleteEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage1);
+                tabControl1.TabPages.Add(tabPage2);
+
+            };
         }
 
         public event EventHandler SearchEvent;
