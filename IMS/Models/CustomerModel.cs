@@ -15,6 +15,8 @@ namespace IMS.Models
         private string phoneNumber;
         private string email;
         private string address;
+        private double totalPurchases;
+        private double balance;
 
 
         [DisplayName("Customer ID")]
@@ -31,6 +33,10 @@ namespace IMS.Models
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Email { get => email; set => email = value; }
         public string Address { get => address; set => address = value; }
+
+        public double TotalPurchases { get => totalPurchases; set => totalPurchases = value; }
+
+        public double Balance { get => balance; set => balance = value; }
     }
 
 }

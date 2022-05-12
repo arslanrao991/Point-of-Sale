@@ -43,7 +43,8 @@ namespace IMS.Presenter
 
         private void LoadAllCustomerList()
         {
-            //throw new NotImplementedException();
+            customerList = repository.GetAll();
+            customerBindingSource.DataSource = customerList;  //Set data source.
         }
 
         private void CancelAction(object sender, EventArgs e)

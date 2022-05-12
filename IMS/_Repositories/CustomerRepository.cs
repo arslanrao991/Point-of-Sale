@@ -12,11 +12,11 @@ namespace IMS._Repositories
 {
     public class CustomerRepository : BaseRepository, ICustomerRepository
     {
-        private string sqlConnectionString;
+        private string connectionString;
 
         public CustomerRepository(string sqlConnectionString)
         {
-            this.sqlConnectionString = sqlConnectionString;
+            this.connectionString = sqlConnectionString;
         }
 
         public void Add(CustomerModel customer)
@@ -68,7 +68,45 @@ namespace IMS._Repositories
 
         public IEnumerable<CustomerModel> GetAll()
         {
-            throw new NotImplementedException();
+            var customerlist = new List<CustomerModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select Paid_Bills.ID, Paid_Bills.Customer_Name, Paid_Bills.Customer_Phone_No,Paid_Bills.Customer_Email,Paid_Bills.Customer_Address, Paid_Bills.Total_Purchases  ,(Paid_Bills.Total_Purchases - (Paid_Bills.Paid_Bill+Accured_Payments_Table.Accured_Payment)) as Balance" +
+                                      "From (select C.ID, C.Customer_Name, C.Customer_Phone_No, C.Customer_Email, C.Customer_Address, SUM(S.Total_Bill) as Total_Purchases, (Sum(S.Paid_Bill)) as Paid_Bill" +
+                                      "From Customers as C" +
+                                      "join Sales as S on C.ID = S.Customer_ID" +
+                                      "Group by C.ID, C.Customer_Name, C.Customer_Phone_No, C.Customer_Email, C.Customer_Address) as Paid_Bills join" +
+                                      "(select C.ID, SUm(AP.Paid_Price) as Accured_Payment" +
+                                      "From Customers as C" +
+                                      "join Accured_Payments as AP on C.ID = AP.Customer_ID" +
+                                      "Group by C.ID) as Accured_Payments_Table on Paid_Bills.ID = Accured_Payments_Table.ID";
+                using (var reader = command.ExecuteReader())
+                {
+                    var customerModel = new CustomerModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            customerModel = new CustomerModel();
+                            customerModel.Id = (int)reader["ID"];
+                            customerModel.Name = (string)reader["Customer_Name"].ToString();
+                            customerModel.PhoneNumber = (string)reader["Customer_Phone_No"].ToString();
+                            customerModel.Email = (string)reader["Customer_Email"].ToString();
+                            customerModel.Address = (string)reader["Customer_Address"];
+                            customerModel.TotalPurchases = (double)reader["total_Purchases"];
+                            customerModel.Balance = (double)reader["balance"];
+                            customerlist.Add(customerModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return customerlist;
         }
 
         public IEnumerable<CustomerModel> GetByValue(string value)

@@ -21,7 +21,7 @@ namespace IMS.Views
 
         private string searchValue;*/
         private bool isEdit;
-        //private bool issuccess;
+        private bool issuccess;
         private string message;
 
         public Form1()
