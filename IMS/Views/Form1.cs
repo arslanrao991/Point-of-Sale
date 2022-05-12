@@ -76,8 +76,8 @@ namespace IMS.Views
             button2.Click += delegate
             {
                 DeleteEvent?.Invoke(this, EventArgs.Empty);
-                tabControl1.TabPages.Remove(tabPage1);
-                tabControl1.TabPages.Add(tabPage2);
+                //tabControl1.TabPages.Remove(tabPage1);
+                //tabControl1.TabPages.Add(tabPage2);
                
             };
         }
@@ -93,7 +93,7 @@ namespace IMS.Views
         public bool IsSuccessful 
         {
             get { return IsSuccessful; }
-            set { IsSuccessful = value; }
+            set { IsSuccessful = issuccess; }
         }
         public string Message 
         { 
@@ -162,6 +162,11 @@ namespace IMS.Views
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

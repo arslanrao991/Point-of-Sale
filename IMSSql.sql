@@ -5,6 +5,16 @@ select* from Products
 
 insert into Products values(100, 'Screw', '001', '001', 10, 14);
 
+insert into Products values(110, 'Plug', '002', '001', 12, 14);
+insert into Products values(101, 'PTO Finger Set', '002', 'KPR', 12, 850);
+insert into Products values(122, 'R1 4-litre Can', '002', 'Oil-R1', 12, 2125)
+
+insert into Products values(152, 'R1 5 litre Can', '002', 'Oil R2', 12, 2125)
+
+update Products set Product_Name = 'Garari', Product_Quantity=2001 where id=129;
+
+Delete from Products where id=129
+
 create Table Products(
 	ID int NOT NULL PRIMARY KEY,
 	Product_Name varchar(50) NOT NULL,

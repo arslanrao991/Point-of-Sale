@@ -39,7 +39,15 @@ namespace IMS._Repositories
 
         public void Delete(int productId)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Delete from Products where id=@id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = productId;
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<ProductsModel> FindByCategory(string category)
@@ -141,7 +149,8 @@ namespace IMS._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "Update Products set Product_Per_Unit_Price=@price, Product_Name=@name, Product_Description=@description, Product_Category=@category, Product_Quantity@quantity where id=@id";
+                command.CommandText = "Update  Products set Product_Name=@name, Product_Description=@description, Product_Category=@category, Product_Quantity=@quantity, Product_Per_Unit_Price=@price " +
+                    "where id=@id";
                 command.Parameters.Add("@id", SqlDbType.Int).Value = product.Id;
                 command.Parameters.Add("@name", SqlDbType.NVarChar).Value = product.Name;
                 command.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;

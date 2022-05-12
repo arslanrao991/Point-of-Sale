@@ -8,9 +8,9 @@ namespace IMS.Models
 {
     public interface ICustomerRepository
     {
-        void Add(ProductsModel customer);
-        void Update(ProductsModel customer);
-        void Delete(int productId);
+        void Add(CustomerModel customer);
+        void Update(CustomerModel customer);
+        void Delete(int customerId);
         IEnumerable<CustomerModel> GetAll();
         IEnumerable<CustomerModel> GetByValue(string value);
         IEnumerable<CustomerModel> FindByName(string name);

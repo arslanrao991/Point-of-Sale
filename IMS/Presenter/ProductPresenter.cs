@@ -92,7 +92,7 @@ namespace IMS.Presenter
         private void CleanViewFeilds()
         {
             view.Id = "0";
-            view.Name = "";
+            view.Name = ""; 
             view.Category = "";
             view.Description="";
             view.Quantity = "";
@@ -105,7 +105,7 @@ namespace IMS.Presenter
             {
                 var product = (ProductsModel)productBindingSource.Current;
                 repository.Delete(product.Id);
-                view.IsSuccessful = true;
+                //view.IsSuccessful = true; //Errorrrr
                 view.Message = "Product Deleted Sucessfully";
                 LoadAllProductList();
             }

@@ -22,7 +22,7 @@ namespace IMS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
-            string sqlConnectionString = "Data Source=DESKTOP-224SMOQ;Initial Catalog=IMS;Integrated Security=True";
+            string sqlConnectionString = "Data Source=DESKTOP-6O8CJ3Q;Initial Catalog=IMS;Integrated Security=True";
             IMainView mainView = new Form0();
             new MainPresenter(mainView, sqlConnectionString);
             Application.Run((Form)mainView) ;
