@@ -11,6 +11,6 @@ namespace IMS.Views
         event EventHandler ShowProductView;
         event EventHandler ShowCustomerView;
         event EventHandler ShowSupplierView;
-
+        event EventHandler ShowSalesView;
     }
 }
