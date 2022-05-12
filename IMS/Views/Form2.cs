@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace IMS.Views
 {
-    public partial class Form2 : Form, ICustomerView
+    public partial class Form2 : KryptonForm, ICustomerView
     {
         public Form2()
         {
@@ -111,6 +112,11 @@ namespace IMS.Views
         public void SetCustomerListBindingSource(BindingSource customerList)
         {
             dataGridView.DataSource = customerList;
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
         }
     }
 }

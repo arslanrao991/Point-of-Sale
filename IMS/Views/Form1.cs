@@ -7,21 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ComponentFactory.Krypton.Toolkit;
 namespace IMS.Views
 {
-    public partial class Form1 : Form, IProductView
+    public partial class Form1 : KryptonForm, IProductView
     {
-        private string productId;
+        /*private string productId;
         private string productName;
         private string productDescription;
         private string productCategory;
         private int productQuantity;
         private double per_unit_price;
 
-        private string searchValue;
+        private string searchValue;*/
         private bool isEdit;
-        private bool issuccess;
+        //private bool issuccess;
         private string message;
 
         public Form1()
@@ -117,7 +117,7 @@ namespace IMS.Views
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            ;
         }
 
         //Singleton Pattern
@@ -164,6 +164,11 @@ namespace IMS.Views
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace IMS.Views
 {
-    public partial class Form0 : Form, IMainView
+    public partial class Form0 : KryptonForm, IMainView
     {
         public Form0()
         {
@@ -18,11 +19,13 @@ namespace IMS.Views
             button1.Click += delegate { ShowProductView?.Invoke(this, EventArgs.Empty); };
             button3.Click += delegate { ShowCustomerView?.Invoke(this, EventArgs.Empty); };
             button4.Click += delegate { ShowSupplierView?.Invoke(this, EventArgs.Empty); };
+            button2.Click += delegate { ShowSalesView?.Invoke(this, EventArgs.Empty); };
         }
 
         public event EventHandler ShowProductView;
         public event EventHandler ShowSupplierView;
         public event EventHandler ShowCustomerView;
+        public event EventHandler ShowSalesView;
 
         private void button1_Click(object sender, EventArgs e)
         {
