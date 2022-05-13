@@ -41,8 +41,8 @@ namespace IMS.Views
         public bool IsEdit { get { return isEdit; } set { isEdit = value; } }
         public bool IsSuccessful
         {
-            get { return IsSuccessful; }
-            set { IsSuccessful = value; }
+            get { return isSuccess; }
+            set { isSuccess = value; }
         }
         public string Message
         {
@@ -70,13 +70,13 @@ namespace IMS.Views
         {
             InitializeComponent();
             AssociateandRaiseViewEvents();
-            //tabControl1.TabPages.Remove(tabPage2);
             button5.Click += delegate { this.Close(); };
         }
 
         private void AssociateandRaiseViewEvents()
         {
             button1.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
+            button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -177,9 +177,13 @@ namespace IMS.Views
 
         }
 
-        public void SetCustomerListBindingSource(BindingSource customerList)
+        public void SetSalesListBindingSource(BindingSource customerList)
         {
-            //throw new NotImplementedException();
+            dataGridView.DataSource = customerList;
+        }
+        public void SetCartProductsBindingSource(BindingSource cartProducts)
+        {
+            dataGridView1.DataSource = cartProducts;
         }
 
         //Singleton Pattern
@@ -201,5 +205,7 @@ namespace IMS.Views
             }
             return instance;
         }
+
+       
     }
 }

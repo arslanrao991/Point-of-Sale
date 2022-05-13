@@ -63,11 +63,11 @@ namespace IMS._Repositories
                         while (reader.Read())
                         {
                             salesModel = new SalesModel();
-                            salesModel.Id = (int)reader["ID"];
+                            salesModel.Id = (int)reader["Sales_ID"];
                             salesModel.ProductId = (int)reader["Product_ID"];
                             salesModel.CusotmerID = (int)reader["Customer_ID"];
-                            salesModel.Quantity = (int)reader["Product_Quantity"];
-                            salesModel.Price = (double)reader["Product_Per_Unit_Price"];
+                            salesModel.Quantity = (int)reader["Quantity"];
+                            salesModel.Price = (double)reader["Per_Unit_Price"];
                             salesList.Add(salesModel);
                         }
                     }
@@ -80,7 +80,44 @@ namespace IMS._Repositories
 
         public IEnumerable<SalesModel> GetByValue(string value)
         {
-            throw new NotImplementedException();
+            int sales_id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            int product_id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            int customer_id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            var salesList = new List<SalesModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+
+
+                command.CommandText = "SELECT SalesDetails.*, Sales.Customer_ID FROM SalesDetails join Sales on SalesDetails.Sales_ID=Sales.Sales_ID where Sales.Sales_ID=@sales_id or Product_ID=@product_id or Customer_ID=@customer_id ORDER BY Sales_ID DESC";
+                command.Parameters.Add("@sales_id", SqlDbType.Int).Value = sales_id;
+                command.Parameters.Add("@product_id", SqlDbType.Int).Value = product_id;
+                command.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var salesModel = new SalesModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            salesModel = new SalesModel();
+                            salesModel.Id = (int)reader["Sales_ID"];
+                            salesModel.ProductId = (int)reader["Product_ID"];
+                            salesModel.CusotmerID = (int)reader["Customer_ID"];
+                            salesModel.Quantity = (int)reader["Quantity"];
+                            salesModel.Price = (double)reader["Per_Unit_Price"];
+                            salesList.Add(salesModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return salesList;
         }
 
         public void Update(SalesModel sales)

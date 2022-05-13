@@ -32,7 +32,8 @@ namespace IMS.Views
         event EventHandler CancelEvent;
 
         //Methods
-        void SetCustomerListBindingSource(BindingSource customerList);
+        void SetSalesListBindingSource(BindingSource customerList);
+        void SetCartProductsBindingSource(BindingSource cartProducts);
         void Show(); //Optional
     }
 }

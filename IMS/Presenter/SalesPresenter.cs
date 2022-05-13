@@ -15,6 +15,8 @@ namespace IMS.Presenter
         private ISalesView view;
         private ISalesRepository repository;
         private BindingSource salesBindingSource;
+        
+
         private IEnumerable<SalesModel> salesList;
 
         //Constructor
@@ -25,15 +27,15 @@ namespace IMS.Presenter
             this.repository = repository;
 
             //Subscribe event handler method to view events
-            this.view.SearchEvent += SearchCustomer;
-            this.view.AddNewEvent += AddNewCustomer;
-            this.view.UpdateEvent += UpdateProductFromList;
-            this.view.DeleteEvent += DeleteSelectedCustomer;
+            this.view.SearchEvent += SearchSale;
+            this.view.AddNewEvent += AddProductToCart;
+            this.view.UpdateEvent += UpdateCart;
             this.view.ProcessEvent += ProcessSales;
             this.view.CancelEvent += CancelAction;
 
             //Set product binding source
-            this.view.SetCustomerListBindingSource(salesBindingSource);
+            this.view.SetSalesListBindingSource(salesBindingSource);
+            this.view.SetCartProductsBindingSource(salesBindingSource);
 
             //Load data to the product list
             LoadAllSalesList();
@@ -44,28 +46,28 @@ namespace IMS.Presenter
 
         private void LoadAllSalesList()
         {
-            //throw new NotImplementedException();
+            salesList = repository.GetAll();
+            salesBindingSource.DataSource = salesList;  //Set data source.
         }
 
-        private void SearchCustomer(object sender, EventArgs e)
+        private void SearchSale(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
+            if (emptyValue == false)
+                salesList = repository.GetByValue(this.view.SearchValue);
+            else salesList = repository.GetAll();
+            salesBindingSource.DataSource = salesList;
         }
 
-        private void AddNewCustomer(object sender, EventArgs e)
+        private void AddProductToCart(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
             IEnumerable<SalesModel> salesList;
         }
 
-        private void UpdateProductFromList(object sender, EventArgs e)
+        private void UpdateCart(object sender, EventArgs e)
         {
             throw new NotImplementedException();
-        }
-
-        private void DeleteSelectedCustomer(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
         }
 
         private void ProcessSales(object sender, EventArgs e)
