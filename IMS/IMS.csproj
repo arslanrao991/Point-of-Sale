@@ -70,6 +70,7 @@
     <Compile Include="Models\ISupplierRepository.cs" />
     <Compile Include="Models\ProductsModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
+    <Compile Include="Models\SalesProductModel.cs" />
     <Compile Include="Models\SupplierModel.cs" />
     <Compile Include="Presenter\Common\ModelDataValidation.cs" />
     <Compile Include="Presenter\CustomerPresenter.cs" />

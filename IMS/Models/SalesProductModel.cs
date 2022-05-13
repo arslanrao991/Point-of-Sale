@@ -8,27 +8,23 @@ using System.Threading.Tasks;
 
 namespace IMS.Models
 {
-    public class SalesModel
+    public class SalesProductModel
     {
         private int id;
-        private int product_id;
-        private int customr_id;
         private int quantity;
         private double price;
 
         [DisplayName("Product ID")]
         public int Id { get => id; set => id = value; }
-        public int ProductId { get => product_id; set => product_id = value; }
-        public int CusotmerID { get => customr_id; set => customr_id = value; }
 
         [DisplayName("Quantity")]
         [Required(ErrorMessage = "Quantity is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Product quantity is required")]
-        public int Quantity { get => quantity; set => quantity = value; }
+        public int Name { get => quantity; set => quantity = value; }
 
         [DisplayName("Price")]
         [Required(ErrorMessage = "Product price is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Product price required")]
-        public double Price { get => price; set => price = value; }
+        public double Description { get => price; set => price = value; }
     }
 }

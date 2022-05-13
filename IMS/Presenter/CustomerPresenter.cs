@@ -49,27 +49,102 @@ namespace IMS.Presenter
 
         private void CancelAction(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFeilds();
         }
 
         private void SaveCustomer(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var model = new CustomerModel();
+            model.Id = Convert.ToInt32(view.Id);
+            model.Name = view.Name;
+            model.PhoneNumber = view.PhoneNumber;
+            model.Email = view.Email;
+            model.Address = view.Address;
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(model);
+                if (view.IsEdit)
+                {
+                    repository.Update(model);
+                    view.Message = "Product updated successfuly";
+
+                }
+                else
+                {
+                    repository.Add(model);
+                    view.Message = "Product added successfuly";
+                }
+                view.IsSuccessful = true;
+                LoadAllCustomerList();
+                CleanViewFeilds();
+
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = ex.Message;
+            }
+        }
+
+        private void CleanViewFeilds()
+        {
+            view.Id = "0";
+            view.Name = "";
+            view.PhoneNumber = "";
+            view.Email = "";
+            view.Address = "";
         }
 
         private void DeleteSelectedCustomer(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var product = (CustomerModel)customerBindingSource.Current;
+                repository.Delete(product.Id);
+                view.Message = "Customer Deleted Sucessfully";
+                LoadAllCustomerList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = "An error occured could not delete customer";
+            }
         }
 
         private void LoadSelectedCustomerToEdit(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var customer = (CustomerModel)customerBindingSource.Current;
+            view.Id = customer.Id.ToString();
+            view.Name = customer.Name;
+            view.PhoneNumber = customer.PhoneNumber;
+            view.Email = customer.Email;
+            view.Address = customer.Address.ToString();
+            view.IsEdit = true;
         }
 
         private void AddNewCustomer(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var model = new CustomerModel();
+            model.Id = Convert.ToInt32(view.Id);
+            model.Name = view.Name;
+            model.PhoneNumber = view.PhoneNumber;
+            model.Email = view.Email;
+            model.Address = view.Address;
+            if (view.IsEdit)
+            {
+                repository.Update(model);
+                view.Message = "Customer updated successfuly";
+
+            }
+            else
+            {
+
+                repository.Add(model);
+                view.Message = "Customer added successfuly";
+            }
+            view.IsEdit = false;
+            LoadAllCustomerList();
         }
 
         private void SearchCustomer(object sender, EventArgs e)

@@ -13,6 +13,9 @@ namespace IMS.Views
 {
     public partial class Form2 : KryptonForm, ICustomerView
     {
+        private bool isEdit;
+        private bool isSuccess;
+        private string message;
         public Form2()
         {
             InitializeComponent();
@@ -49,7 +52,7 @@ namespace IMS.Views
 
                 tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Add(tabPage2);
-                tabPage2.Text = "Add Product";
+                tabPage2.Text = "Add Customer";
             };
 
             //Edit
@@ -58,15 +61,13 @@ namespace IMS.Views
                 EditEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Add(tabPage2);
-                tabPage2.Text = "Edit Product";
+                tabPage2.Text = "Edit Customer";
             };
 
             //Delete 
             button2.Click += delegate
             {
                 DeleteEvent?.Invoke(this, EventArgs.Empty);
-                tabControl1.TabPages.Remove(tabPage1);
-                tabControl1.TabPages.Add(tabPage2);
 
             };
         }
@@ -78,14 +79,52 @@ namespace IMS.Views
         public event EventHandler SaveEvent;
         public event EventHandler CancelEvent;
 
-        public string Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PhoneNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Email { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Address { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string SearchValue { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsEdit { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsSuccessful { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Message { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Id 
+        { 
+            get { return textBox2.Text; }
+            set { textBox2.Text = value; }
+        }
+        public string Name
+         { 
+            get { return textBox3.Text; }
+            set { textBox3.Text = value; }
+        }
+
+        public string PhoneNumber
+        {
+            get { return textBox4.Text; }
+            set { textBox4.Text = value; }
+        }
+        public string Email
+        {
+            get { return textBox5.Text; }
+            set { textBox5.Text = value; }
+        }
+        public string Address
+        {
+            get { return textBox7.Text; }
+            set { textBox7.Text = value; }
+        }
+        public string SearchValue
+        {
+            get { return textBox1.Text; }
+            set { textBox1.Text = value; }
+        }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set { isEdit = value; }
+        }
+        public bool IsSuccessful
+        {
+            get { return isSuccess; }
+            set { isSuccess = value; }
+        }
+        public string Message
+        {
+            get { return message; }
+            set { message = value; }
+        }
 
 
         //Singleton Pattern

@@ -13,7 +13,9 @@ namespace IMS.Views
 {
     public partial class Form4 : KryptonForm, ISalesView
     {
+        
         private bool isEdit;
+        private bool isSuccess;
         private string message;
         public string Id 
         {

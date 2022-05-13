@@ -35,15 +35,16 @@ namespace IMS.Presenter
             this.view.SetSupplierListBindingSource(supplierBindingSource);
 
             //Load data to the product list
-            LoadAllCustomerList();
+            LoadAllSupplierList();
 
             //Show View
             this.view.Show();
         }
 
-        private void LoadAllCustomerList()
+        private void LoadAllSupplierList()
         {
-            //throw new NotImplementedException();
+            supplierList = repository.GetAll();
+            supplierBindingSource.DataSource = supplierList;  //Set data source.
         }
 
         private void CancelAction(object sender, EventArgs e)
@@ -58,17 +59,53 @@ namespace IMS.Presenter
 
         private void DeleteSelectedSupplier(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var product = (SupplierModel)supplierBindingSource.Current;
+                repository.Delete(product.Id);
+                view.Message = "Product Deleted Sucessfully";
+                LoadAllSupplierList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccessful = false;
+                view.Message = "An error occured could not delete supplier";
+            }
         }
 
         private void LoadSelectedSupplierToEdit(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var supplier = (SupplierModel)supplierBindingSource.Current;
+            view.Id = supplier.Id.ToString();
+            view.Name = supplier.Name;
+            view.PhoneNumber = supplier.PhoneNumber;
+            view.Email = supplier.Email;
+            view.Address = supplier.Address.ToString();
+            view.IsEdit = true;
         }
 
         private void AddNewSupplier(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var model = new SupplierModel();
+            model.Id = Convert.ToInt32(view.Id);
+            model.Name = view.Name;
+            model.PhoneNumber = view.PhoneNumber;
+            model.Email = view.Email;
+            model.Address = view.Address;
+            if (view.IsEdit)
+            {
+                repository.Update(model);
+                view.Message = "Supplier updated successfuly";
+
+            }
+            else
+            {
+
+                repository.Add(model);
+                view.Message = "Supplier added successfuly";
+            }
+            view.IsEdit = false;
+            LoadAllSupplierList();
         }
 
         private void SearchSupplier(object sender, EventArgs e)

@@ -11,11 +11,11 @@ namespace IMS._Repositories
 {
     public class SupplierRepository : BaseRepository, ISupplierRepository
     {
-        private string sqlConnectionString;
+        private string connectionString;
 
         public SupplierRepository(string sqlConnectionString)
         {
-            this.sqlConnectionString = sqlConnectionString;
+            this.connectionString = sqlConnectionString;
         }
 
         public void Add(SupplierModel supplier)
@@ -30,7 +30,7 @@ namespace IMS._Repositories
                 command.Parameters.Add("@name", SqlDbType.NVarChar).Value = supplier.Name;
                 command.Parameters.Add("@ph_no", SqlDbType.NVarChar).Value = supplier.PhoneNumber;
                 command.Parameters.Add("@email", SqlDbType.NVarChar).Value = supplier.Email;
-                command.Parameters.Add("@address", SqlDbType.Int).Value = supplier.Address;
+                command.Parameters.Add("@address", SqlDbType.NVarChar).Value = supplier.Address;
                 command.ExecuteNonQuery();
             }
         }
@@ -42,7 +42,7 @@ namespace IMS._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "Delete from Suppliers where id=@id";
+                command.CommandText = "Delete from Supplier where id=@id";
                 command.Parameters.Add("@id", SqlDbType.Int).Value = supplierId;
                 command.ExecuteNonQuery();
             }
@@ -65,12 +65,75 @@ namespace IMS._Repositories
 
         public IEnumerable<SupplierModel> GetAll()
         {
-            throw new NotImplementedException();
+            var supplierList = new List<SupplierModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT* FROM Supplier ORDER BY ID DESC";
+                using (var reader = command.ExecuteReader())
+                {
+                    var supplierModel = new SupplierModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            supplierModel = new SupplierModel();
+                            supplierModel.Id = (int)reader["ID"];
+                            supplierModel.Name = (string)reader["Supplier_Name"].ToString();
+                            supplierModel.PhoneNumber = (string)reader["Supplier_Phone_No"].ToString();
+                            supplierModel.Email = (string)reader["Supplier_Email"].ToString();
+                            supplierModel.Address = (string)reader["Supplier_Address"];
+                            supplierList.Add(supplierModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return supplierList;
         }
 
         public IEnumerable<SupplierModel> GetByValue(string value)
         {
-            throw new NotImplementedException();
+            int id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            string name = value;
+            string phone = value;
+            var supplierList = new List<SupplierModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT* FROM Supplier where id=@id or Supplier_Name like @name+'%' or Supplier_Phone_No like @phone+'%' ORDER BY ID DESC";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+                command.Parameters.Add("@phone", SqlDbType.NVarChar).Value = phone;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var supplierModel = new SupplierModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            supplierModel = new SupplierModel();
+                            supplierModel.Id = (int)reader["ID"];
+                            supplierModel.Name = (string)reader["Supplier_Name"].ToString();
+                            supplierModel.PhoneNumber = (string)reader["Supplier_Phone_No"].ToString();
+                            supplierModel.Email = (string)reader["Supplier_Email"].ToString();
+                            supplierModel.Address = (string)reader["Supplier_Address"];
+                            supplierList.Add(supplierModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return supplierList;
         }
 
         public void Update(SupplierModel supplier)
@@ -86,7 +149,7 @@ namespace IMS._Repositories
                 command.Parameters.Add("@name", SqlDbType.NVarChar).Value = supplier.Name;
                 command.Parameters.Add("@phone_no", SqlDbType.NVarChar).Value = supplier.PhoneNumber;
                 command.Parameters.Add("@email", SqlDbType.NVarChar).Value = supplier.Email;
-                command.Parameters.Add("@address", SqlDbType.Int).Value = supplier.Address;
+                command.Parameters.Add("@address", SqlDbType.NVarChar).Value = supplier.Address;
                 command.ExecuteNonQuery();
             }
         }

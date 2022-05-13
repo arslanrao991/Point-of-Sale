@@ -21,7 +21,7 @@ namespace IMS.Views
 
         private string searchValue;*/
         private bool isEdit;
-        private bool issuccess;
+        private bool isSuccess;
         private string message;
 
         public Form1()
@@ -92,8 +92,8 @@ namespace IMS.Views
         public bool IsEdit { get { return isEdit; } set { isEdit = value; } }
         public bool IsSuccessful 
         {
-            get { return IsSuccessful; }
-            set { IsSuccessful = issuccess; }
+            get { return isSuccess; }
+            set { IsSuccessful = isSuccess; }
         }
         public string Message 
         { 
