@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IMS._Repositories
 {
-    internal class SalesRepository: BaseRepository, ISalesRepository
+    internal class SalesRepository : BaseRepository, ISalesRepository
     {
         private string connectionString;
 
@@ -18,8 +18,24 @@ namespace IMS._Repositories
             this.connectionString = sqlConnectionString;
         }
 
-        public int ProcessSale(DataTable sales, string phone, string received_amounts)
+        public int ProcessSale(DataTable sale, string phone, double total_bill, double received_amounts)
         {
+            var customerList = new List<CustomerModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("ProcessSalesTransaction", connection))
+            {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@cart", sale);
+                command.Parameters.Add("@products_count", sale);
+                command.Parameters.Add("@phone", sale);
+                command.Parameters.Add("@total", total_bill);
+                command.Parameters.Add("@paid", received_amounts);
+
+
+                command.ExecuteReader();
+            }
+
             return 1;
         }
 

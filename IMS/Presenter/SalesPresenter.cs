@@ -103,8 +103,20 @@ namespace IMS.Presenter
         {
             //throw new NotImplementedException();
             string phone = (string)view.PhoneNo;
-            string received_amount = (string)view.ReceivedAmount;
-            int isSuccessfull=repository.ProcessSale(table, phone, received_amount);
+            if (phone == "Phone No" || phone == "")
+                phone = "0000";
+            string rc_amount = (string)(view.ReceivedAmount);
+            double received_amount;
+            if (rc_amount == "Received Amount" || rc_amount == "")
+                received_amount = 0;
+            else 
+                received_amount = Convert.ToDouble(rc_amount);
+            double total_bill = 0;
+            for(int i=0;i<table.Rows.Count;i++)
+            {
+                total_bill += Convert.ToDouble(table.Rows[i]["Price"]) * Convert.ToInt32(table.Rows[i]["Quantity"]);
+            }
+            int isSuccessfull=repository.ProcessSale(table, phone, total_bill, received_amount);
 
             if (isSuccessfull == 1)
             {
