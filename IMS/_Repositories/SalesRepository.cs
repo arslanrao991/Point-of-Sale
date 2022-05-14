@@ -18,15 +18,11 @@ namespace IMS._Repositories
             this.connectionString = sqlConnectionString;
         }
 
-        public void Add(SalesProductModel sales)
+        public int ProcessSale(DataTable sales, string phone, string received_amounts)
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
-        public void Delete(int salesId)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<SalesModel> FindByCategory(string category)
         {
@@ -118,6 +114,11 @@ namespace IMS._Repositories
                 }
             }
             return salesList;
+        }
+
+        public void ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(SalesModel sales)

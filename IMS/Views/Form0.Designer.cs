@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label1 = new System.Windows.Forms.Label();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
-            this.button5 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +50,70 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 612);
+            this.panel1.Size = new System.Drawing.Size(200, 652);
             this.panel1.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(0, 352);
+            this.button5.Name = "button5";
+            this.button5.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
+            this.button5.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
+            this.button5.OverrideDefault.Back.ColorAngle = 45F;
+            this.button5.OverrideDefault.Back.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.button5.OverrideDefault.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
+            this.button5.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
+            this.button5.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.button5.OverrideDefault.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.button5.OverrideDefault.Border.Rounding = 20;
+            this.button5.OverrideDefault.Border.Width = 1;
+            this.button5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.button5.Size = new System.Drawing.Size(197, 49);
+            this.button5.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateCommon.Back.ColorAngle = 45F;
+            this.button5.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateCommon.Border.ColorAngle = 45F;
+            this.button5.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.button5.StateCommon.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.button5.StateCommon.Border.Rounding = 20;
+            this.button5.StateCommon.Border.Width = 1;
+            this.button5.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.button5.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.button5.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
+            this.button5.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
+            this.button5.StatePressed.Back.ColorAngle = 135F;
+            this.button5.StatePressed.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
+            this.button5.StatePressed.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
+            this.button5.StatePressed.Border.ColorAngle = 135F;
+            this.button5.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.button5.StatePressed.Border.Rounding = 20;
+            this.button5.StatePressed.Border.Width = 1;
+            this.button5.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
+            this.button5.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateTracking.Back.ColorAngle = 45F;
+            this.button5.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.button5.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
+            this.button5.StateTracking.Border.ColorAngle = 45F;
+            this.button5.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.button5.StateTracking.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.button5.StateTracking.Border.Rounding = 20;
+            this.button5.StateTracking.Border.Width = 1;
+            this.button5.TabIndex = 8;
+            this.button5.Values.Text = "Reports";
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -305,9 +365,9 @@
             // 
             // kryptonPalette1
             // 
-            this.kryptonPalette1.ButtonSpecs.FormClose.Image = global::IMS.Properties.Resources.icons8_cancel_48;
-            this.kryptonPalette1.ButtonSpecs.FormClose.ImageStates.ImagePressed = global::IMS.Properties.Resources.icons8_cancel_48;
-            this.kryptonPalette1.ButtonSpecs.FormClose.ImageStates.ImageTracking = global::IMS.Properties.Resources.icons8_cancel_48;
+            this.kryptonPalette1.ButtonSpecs.FormClose.Image = global::IMS.Properties.Resources.icons8_cancel_20;
+            this.kryptonPalette1.ButtonSpecs.FormClose.ImageStates.ImagePressed = global::IMS.Properties.Resources.icons8_cancel_20;
+            this.kryptonPalette1.ButtonSpecs.FormClose.ImageStates.ImageTracking = global::IMS.Properties.Resources.icons8_cancel_20;
             this.kryptonPalette1.ButtonStyles.ButtonForm.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.ButtonStyles.ButtonForm.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.ButtonStyles.ButtonForm.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -339,77 +399,17 @@
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 10;
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, -1, -1, -1);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(0, 352);
-            this.button5.Name = "button5";
-            this.button5.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
-            this.button5.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
-            this.button5.OverrideDefault.Back.ColorAngle = 45F;
-            this.button5.OverrideDefault.Back.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
-            this.button5.OverrideDefault.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
-            this.button5.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
-            this.button5.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.button5.OverrideDefault.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
-            this.button5.OverrideDefault.Border.Rounding = 20;
-            this.button5.OverrideDefault.Border.Width = 1;
-            this.button5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.button5.Size = new System.Drawing.Size(197, 49);
-            this.button5.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateCommon.Back.ColorAngle = 45F;
-            this.button5.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateCommon.Border.ColorAngle = 45F;
-            this.button5.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.button5.StateCommon.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
-            this.button5.StateCommon.Border.Rounding = 20;
-            this.button5.StateCommon.Border.Width = 1;
-            this.button5.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.button5.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.button5.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
-            this.button5.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
-            this.button5.StatePressed.Back.ColorAngle = 135F;
-            this.button5.StatePressed.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
-            this.button5.StatePressed.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
-            this.button5.StatePressed.Border.ColorAngle = 135F;
-            this.button5.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.button5.StatePressed.Border.Rounding = 20;
-            this.button5.StatePressed.Border.Width = 1;
-            this.button5.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
-            this.button5.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateTracking.Back.ColorAngle = 45F;
-            this.button5.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
-            this.button5.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
-            this.button5.StateTracking.Border.ColorAngle = 45F;
-            this.button5.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.button5.StateTracking.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
-            this.button5.StateTracking.Border.Rounding = 20;
-            this.button5.StateTracking.Border.Width = 1;
-            this.button5.TabIndex = 8;
-            this.button5.Values.Text = "Reports";
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // Form0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1146, 612);
+            this.ClientSize = new System.Drawing.Size(1170, 652);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form0";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

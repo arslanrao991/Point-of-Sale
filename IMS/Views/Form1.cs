@@ -37,6 +37,7 @@ namespace IMS.Views
             button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
             button7.Click += delegate
             {
+                CancelEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Add(tabPage1);
             };

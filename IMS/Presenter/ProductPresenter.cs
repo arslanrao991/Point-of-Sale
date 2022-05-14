@@ -51,6 +51,7 @@ namespace IMS.Presenter
         private void CancelAction(object sender, EventArgs e)
         {
             CleanViewFeilds();
+            view.IsEdit = false;
         }
 
         private void SaveProduct(object sender, EventArgs e)
@@ -91,7 +92,7 @@ namespace IMS.Presenter
 
         private void CleanViewFeilds()
         {
-            view.Id = "0";
+            view.Id = "";
             view.Name = ""; 
             view.Category = "";
             view.Description="";

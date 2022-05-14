@@ -46,10 +46,19 @@ namespace IMS.Presenter
             supplierList = repository.GetAll();
             supplierBindingSource.DataSource = supplierList;  //Set data source.
         }
+        private void CleanViewFeilds()
+        {
+            view.Id = "";
+            view.Name = "";
+            view.PhoneNumber = "";
+            view.Email = "";
+            view.Address = "";
+        }
 
         private void CancelAction(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFeilds();
+            view.IsEdit = false;
         }
 
         private void SaveSupplier(object sender, EventArgs e)

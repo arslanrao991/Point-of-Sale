@@ -77,6 +77,14 @@ namespace IMS.Views
             get { return rcTextBox.Text; }
             set { rcTextBox.Text = value; }
         }
+
+        public bool Return_Is_Bill_Paid { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string PhoneNo
+        {
+            get { return rcTextBox.Text; }
+            set { rcTextBox.Text = value; }
+        }
+
         public Form4()
         {
             InitializeComponent();
@@ -88,7 +96,7 @@ namespace IMS.Views
         {
             button1.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
             button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            //btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnGenerate.Click += delegate { ProcessEvent?.Invoke(this, EventArgs.Empty); };
 
         }

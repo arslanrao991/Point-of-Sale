@@ -13,7 +13,7 @@ insert into Products values(107, 'Screw7', '008', '001', 10, 17);
 insert into Products values(108, 'Screw8', '009', '001', 10, 19);
 insert into Products values(109, 'Screw9', '010', '001', 10, 12);
 
-create Table Products(
+create Table Products (
 	ID int NOT NULL PRIMARY KEY,
 	Product_Name varchar(50) NOT NULL,
 	Product_Description varchar(50),
@@ -241,47 +241,60 @@ End
 drop procedure ProcessSalesTransaction
 
 /*-----------------------*/
-select * from (
-				select Distinct *, dense_rank() over(order by C.ID)r from Products as C) as TopN
-			where r=5
-
-DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar(20), @if_Ph_exist int, @per_unit_price float,
-		@if_sales_table_is_empty int
-	SET @Counter=1
-	SET @ph = '03094233623'
-
-	/*Customer*/
-	SELECT @if_Ph_exist=COUNT(A.ID) from(select Customer.ID from Customer where Customer.Customer_Phone_No = @ph) as A
-	if (@if_Ph_exist = 0)
-	begin
-		select top 1 @id = Customer.ID+1 From Customer order by ID desc
-		insert into Customer values
-		(@id, 'Default',  @ph, '', '');
-		
-	end
-	else 
-	begin
-		select @id = Customer.ID from Customer where Customer.Customer_Phone_No = @ph
-	end
-	/*Sales*/
-	SELECT @if_sales_table_is_empty=COUNT(A.Sales_ID) from(select Sales.Sales_ID from Sales) as A
-	if (@if_sales_table_is_empty = 0)
-	begin
-		set @sid = 1
-	end
-	else 
-	begin
-		select top 1 @sid = Sales.Sales_ID + 1 from Sales order by Sales.Sales_ID desc
-	end
-	print(@id)
-	print(@sid)
-	insert into Sales values(@sid, @id, getdate(), 100, 10, 0);
 
 select* from customer
 select* from Sales
+select* from SalesDetails
 delete from sales where Sales.Sales_ID=6
 drop table Sales
 drop table SalesDetails
+
+DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar(20), @if_Sale_exist int, @per_unit_price float,
+		@if_product_exist int, @pid int, @price float, @is_bill_paid int
+	SET @sid = 4
+	Set @pid = 103
+	set @quantity = 1
+	set @is_bill_paid = 1
+
+	SELECT @if_Sale_exist=COUNT(A.Sales_ID) from(select Sales.Sales_ID from Sales where Sales.Sales_ID = @sid) as A
+	if (@if_Sale_exist = 0)
+	begin
+		return;
+	end
+	else 
+	begin
+		SELECT @if_product_exist=COUNT(A.Sales_ID) from(select SalesDetails.Sales_ID from SalesDetails where SalesDetails.Sales_ID =@sid and SalesDetails.Product_ID = @pid) as A
+		if(@if_product_exist = 0)
+		begin
+			return
+		end
+		else
+		begin
+			Select @quantity = SD.Quantity, @price = SD.Per_Unit_Price from SalesDetails as SD where SD.Sales_ID = @sid and SD.Product_ID = @pid
+			if(@quantity>=1 and @is_bill_paid=1)
+			begin 
+				update Sales set Sales.Total_Bill= (Sales.Total_Bill - (@quantity*@price)), 
+				Sales.Paid_Bill = (Sales.Paid_Bill - (@quantity*@price))
+				where Sales.Sales_ID = @sid
+				update SalesDetails set Quantity = Quantity - @quantity 
+				where Sales_ID = @sid and Product_ID = @pid
+			end
+			else
+			begin 
+				if(@quantity>=1 and @is_bill_paid=0)
+				begin 
+					update Sales set Sales.Total_Bill= (Sales.Total_Bill - (@quantity*@price))
+					where Sales.Sales_ID = @sid
+					update SaleDetails set Quantity = Quantity - @quantity 
+				where Sales_ID = @sid and Product_ID = @pid
+				end
+			end
+		end
+	end
+	
+
+
+
 
 
 

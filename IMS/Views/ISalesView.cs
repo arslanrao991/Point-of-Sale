@@ -18,10 +18,14 @@ namespace IMS.Views
         bool IsEdit { get; set; }
         bool IsSuccessful { get; set; }
         string Message { get; set; }
-
         string Return_Sales_Id { get; set; }
         string Return_Product_Id { get; set; }
         string Return_Quantity { get; set; }
+        bool Return_Is_Bill_Paid { get; set; }
+        string PhoneNo { get; set; }
+        string ReceivedAmount { get; set; }
+
+
 
         //Events
         event EventHandler SearchEvent;
