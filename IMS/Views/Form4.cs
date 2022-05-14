@@ -96,8 +96,9 @@ namespace IMS.Views
         {
             button1.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
             button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            //btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnGenerate.Click += delegate { ProcessEvent?.Invoke(this, EventArgs.Empty); };
+            button2.Click += delegate { ReturnSales?.Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -107,6 +108,7 @@ namespace IMS.Views
         public event EventHandler DeleteEvent;
         public event EventHandler ProcessEvent;
         public event EventHandler CancelEvent;
+        public event EventHandler ReturnSales;
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {

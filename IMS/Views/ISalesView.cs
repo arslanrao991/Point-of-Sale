@@ -34,6 +34,7 @@ namespace IMS.Views
         event EventHandler DeleteEvent;
         event EventHandler ProcessEvent;
         event EventHandler CancelEvent;
+        event EventHandler ReturnSales;
 
         //Methods
         void SetSalesListBindingSource(BindingSource customerList);

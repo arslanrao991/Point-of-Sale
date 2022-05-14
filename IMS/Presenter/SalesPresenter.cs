@@ -40,6 +40,7 @@ namespace IMS.Presenter
             this.view.UpdateEvent += UpdateCart;
             this.view.ProcessEvent += ProcessSales;
             this.view.CancelEvent += CancelAction;
+            this.view.ReturnSales += ReturnSales;
 
             //Set product binding source
             this.view.SetSalesListBindingSource(salesBindingSource);
@@ -50,6 +51,22 @@ namespace IMS.Presenter
 
             //Show View
             this.view.Show();
+        }
+
+        private void ReturnSales(object sender, EventArgs e)
+        {
+            int sales_id = Convert.ToInt32(view.Return_Sales_Id);
+            int product_id = Convert.ToInt32(view.Return_Product_Id);
+            int quantity = Convert.ToInt32(view.Return_Quantity);
+            bool is_paid_sale = view.Return_Is_Bill_Paid;
+            int paid_sale;
+            if (is_paid_sale)
+                paid_sale = 1;
+            else
+                paid_sale = 0;
+
+            repository.ReturnSale(sales_id, product_id, quantity, paid_sale);
+
         }
 
         private void LoadAllSalesList()
@@ -88,6 +105,7 @@ namespace IMS.Presenter
             string phone = (string)view.PhoneNo;
             string received_amount = (string)view.ReceivedAmount;
             int isSuccessfull=repository.ProcessSale(table, phone, received_amount);
+
             if (isSuccessfull == 1)
             {
                 table.Clear();
@@ -100,7 +118,6 @@ namespace IMS.Presenter
 
         private void CancelAction(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
             table.Clear();
             view.PhoneNo = "Phone No";
             view.ReceivedAmount = "Received Amount";
