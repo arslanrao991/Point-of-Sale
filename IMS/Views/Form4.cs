@@ -66,6 +66,17 @@ namespace IMS.Views
             set { textBox7.Text = value; }
         }
 
+        public string PhoneNO
+        {
+            get { return phoneTextBox.Text; }
+            set { phoneTextBox.Text = value; }
+        }
+
+        public string ReceivedAmount
+        {
+            get { return rcTextBox.Text; }
+            set { rcTextBox.Text = value; }
+        }
         public Form4()
         {
             InitializeComponent();
@@ -77,6 +88,8 @@ namespace IMS.Views
         {
             button1.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
             button4.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            btnGenerate.Click += delegate { ProcessEvent?.Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -206,6 +219,24 @@ namespace IMS.Views
             return instance;
         }
 
-       
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void kryptonTextBox1_Click(object sender, EventArgs e)
+        {
+            phoneTextBox.Text = "";
+        }
+
+        private void phoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rcTextBox_Click(object sender, EventArgs e)
+        {
+            rcTextBox.Text = "";
+        }
     }
 }

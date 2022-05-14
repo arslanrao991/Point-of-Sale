@@ -78,6 +78,8 @@ namespace IMS.Presenter
         private void CancelAction(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
+            table.Clear();
+            view.PhoneNO = "Phone No";
         }
     }
 }

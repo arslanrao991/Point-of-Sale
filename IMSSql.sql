@@ -171,3 +171,117 @@ END
 drop procedure GetCutomerRecord
 
 SELECT SalesDetails.*, Sales.Customer_ID FROM SalesDetails join Sales on SalesDetails.Sales_ID=Sales.Sales_ID ORDER BY Sales_ID DESC
+
+
+CREATE TYPE [dbo].[MyTableType] AS TABLE(
+    Product_Id int NOT NULL,
+    Quantity int NULL,
+	Price float
+)
+
+create Procedure ProcessSalesTransaction (@cart MyTableType readonly, @products_count int, @phone varchar(20), @total float, @paid float)
+As Begin
+Begin Transaction
+Save Transaction recent;
+	DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar(20), @if_Ph_exist int, @per_unit_price float,
+		@if_sales_table_is_empty int
+	SET @Counter=1
+	SET @ph = @phone
+
+	/*Customer*/
+	SELECT @if_Ph_exist=COUNT(A.ID) from(select Customer.ID from Customer where Customer.Customer_Phone_No = @ph) as A
+	if (@if_Ph_exist = 0)
+	begin
+		select top 1 @id = Customer.ID+1 From Customer order by ID desc
+		insert into Customer values(@id, 'Default',  @ph, '', '');
+	end
+	else 
+	begin
+		select @id = Customer.ID from Customer where Customer.Customer_Phone_No = @ph
+	end
+	/*Sales*/
+	SELECT @if_sales_table_is_empty=COUNT(A.Sales_ID) from(select Sales.Sales_ID from Sales) as A
+	if (@if_sales_table_is_empty = 0)
+	begin
+		set @sid = 1
+	end
+	else 
+	begin
+		select top 1 @sid = Sales.Sales_ID + 1 from Sales order by Sales.Sales_ID desc
+	end
+	insert into Sales values(@sid, @id, getdate(), @total, @paid, 0);
+
+	/*Updating Products and Sales Details*/
+	WHILE ( @Counter <=  @products_count)
+	BEGIN
+		Begin Try
+			select Distinct @id = TopN.Product_ID, @quantity = TopN.Quantity, @per_unit_price = TopN.Price from (
+				select *, dense_rank() over(order by C.Product_ID)r from @cart as C) as TopN
+			where r=@Counter
+
+			Update Products set Product_Quantity -= (@quantity)
+			Where Products.Id= @id
+
+			insert into SalesDetails values(@sid, @id, @quantity, @per_unit_price);
+
+		End Try
+
+		Begin Catch
+			rollback Transaction recent;
+			set @result = 0
+			break
+		End Catch
+		SET @Counter  = (@Counter  + 1)
+	END
+	commit Transaction
+	set @result = 1
+	return @result;
+End
+	
+drop procedure ProcessSalesTransaction
+
+/*-----------------------*/
+select * from (
+				select Distinct *, dense_rank() over(order by C.ID)r from Products as C) as TopN
+			where r=5
+
+DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar(20), @if_Ph_exist int, @per_unit_price float,
+		@if_sales_table_is_empty int
+	SET @Counter=1
+	SET @ph = '03094233623'
+
+	/*Customer*/
+	SELECT @if_Ph_exist=COUNT(A.ID) from(select Customer.ID from Customer where Customer.Customer_Phone_No = @ph) as A
+	if (@if_Ph_exist = 0)
+	begin
+		select top 1 @id = Customer.ID+1 From Customer order by ID desc
+		insert into Customer values
+		(@id, 'Default',  @ph, '', '');
+		
+	end
+	else 
+	begin
+		select @id = Customer.ID from Customer where Customer.Customer_Phone_No = @ph
+	end
+	/*Sales*/
+	SELECT @if_sales_table_is_empty=COUNT(A.Sales_ID) from(select Sales.Sales_ID from Sales) as A
+	if (@if_sales_table_is_empty = 0)
+	begin
+		set @sid = 1
+	end
+	else 
+	begin
+		select top 1 @sid = Sales.Sales_ID + 1 from Sales order by Sales.Sales_ID desc
+	end
+	print(@id)
+	print(@sid)
+	insert into Sales values(@sid, @id, getdate(), 100, 10, 0);
+
+select* from customer
+select* from Sales
+delete from sales where Sales.Sales_ID=6
+drop table Sales
+drop table SalesDetails
+
+
+
