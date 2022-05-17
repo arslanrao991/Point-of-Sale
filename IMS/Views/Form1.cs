@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 namespace IMS.Views
 {
-    public partial class Form1 : KryptonForm, IProductView
+    public partial class Form1 : Form, IProductView
     {
         /*private string productId;
         private string productName;
@@ -176,5 +176,6 @@ namespace IMS.Views
         {
 
         }
+
     }
 }

@@ -66,11 +66,6 @@ namespace IMS.Views
             set { textBox7.Text = value; }
         }
 
-        public string PhoneNO
-        {
-            get { return phoneTextBox.Text; }
-            set { phoneTextBox.Text = value; }
-        }
 
         public string ReceivedAmount
         {
@@ -78,11 +73,15 @@ namespace IMS.Views
             set { rcTextBox.Text = value; }
         }
 
-        public bool Return_Is_Bill_Paid { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool Return_Is_Bill_Paid 
+        { 
+            get { return checkBox1.Checked; }
+            set { checkBox1.Checked = false; } 
+        }
         public string PhoneNo
         {
-            get { return rcTextBox.Text; }
-            set { rcTextBox.Text = value; }
+            get { return phTextBox.Text; }
+            set { phTextBox.Text = value; }
         }
 
         public Form4()
@@ -110,95 +109,7 @@ namespace IMS.Views
         public event EventHandler CancelEvent;
         public event EventHandler ReturnSales;
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         public void SetSalesListBindingSource(BindingSource customerList)
         {
@@ -236,12 +147,7 @@ namespace IMS.Views
 
         private void kryptonTextBox1_Click(object sender, EventArgs e)
         {
-            phoneTextBox.Text = "";
-        }
-
-        private void phoneTextBox_TextChanged(object sender, EventArgs e)
-        {
-
+            phTextBox.Text = "";
         }
 
         private void rcTextBox_Click(object sender, EventArgs e)

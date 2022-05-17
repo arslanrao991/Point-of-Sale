@@ -21,20 +21,20 @@ namespace IMS._Repositories
 
         public void Add(CustomerModel customer)
         {
-
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand())
+            using (var command = new SqlCommand("AddCustomerTransaction", connection))
             {
                 connection.Open();
-                command.Connection = connection;
-                command.CommandText = "insert into Customer values(@C_id, @name, @ph_no, @email, @address);";
-                command.Parameters.Add("@C_id", SqlDbType.Int).Value = customer.Id;
-                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = customer.Name;
-                command.Parameters.Add("@ph_no", SqlDbType.NVarChar).Value =customer.PhoneNumber;
-                command.Parameters.Add("@email", SqlDbType.NVarChar).Value = customer.Email;
-                command.Parameters.Add("@address", SqlDbType.NVarChar).Value = customer.Address;
-                command.ExecuteNonQuery();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@c_id", customer.Id);
+                command.Parameters.Add("@name", customer.Name);
+                command.Parameters.Add("@ph", customer.PhoneNumber);
+                command.Parameters.Add("@email", customer.Email);
+                command.Parameters.Add("@address", customer.Address);
+
+                command.ExecuteReader();
             }
+
             
         }
 

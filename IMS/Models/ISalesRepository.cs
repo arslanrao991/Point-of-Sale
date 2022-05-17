@@ -11,7 +11,7 @@ namespace IMS.Models
     {
         int ProcessSale(DataTable sale, string phone, double total_bill, double received_amounts);
         void Update(SalesModel sales);
-        void ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid);
+        int ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid);
         IEnumerable<SalesModel> GetAll();
 
         IEnumerable<SalesModel> GetByValue(string value);

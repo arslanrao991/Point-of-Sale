@@ -75,6 +75,15 @@ namespace IMS.Presenter
             salesBindingSource.DataSource = salesList;  //Set data source.
         }
 
+        private void CleanViewFeilds()
+        {
+            view.Id = "";
+            view.Selling_Price = "";
+            view.Quantity = "";
+            view.PhoneNo = "Phone No";
+            view.ReceivedAmount = "received Amount";
+        }
+
         private void SearchSale(object sender, EventArgs e)
         {
             bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
@@ -101,7 +110,6 @@ namespace IMS.Presenter
 
         private void ProcessSales(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
             string phone = (string)view.PhoneNo;
             if (phone == "Phone No" || phone == "")
                 phone = "0000";
@@ -123,6 +131,7 @@ namespace IMS.Presenter
                 table.Clear();
                 view.PhoneNo = "Phone No";
                 view.ReceivedAmount = "Received Amount";
+                table.Rows.Clear();
             }
             
                 

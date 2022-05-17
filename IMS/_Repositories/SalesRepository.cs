@@ -27,11 +27,10 @@ namespace IMS._Repositories
                 connection.Open();
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@cart", sale);
-                command.Parameters.Add("@products_count", sale);
-                command.Parameters.Add("@phone", sale);
+                command.Parameters.Add("@products_count", sale.Rows.Count);
+                command.Parameters.Add("@phone", phone);
                 command.Parameters.Add("@total", total_bill);
                 command.Parameters.Add("@paid", received_amounts);
-
 
                 command.ExecuteReader();
             }
@@ -132,9 +131,24 @@ namespace IMS._Repositories
             return salesList;
         }
 
-        public void ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid)
+        public int ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid)
         {
-            throw new NotImplementedException();
+            ;
+            var customerList = new List<CustomerModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("ReturnSalesTransaction", connection))
+            {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@sid", salesId);
+                command.Parameters.Add("@pid", product_id);
+                command.Parameters.Add("@quantity2", quantity);
+                command.Parameters.Add("@is_bill_paid", is_bill_paid);
+
+                command.ExecuteReader();
+            }
+
+            return 1;
         }
 
         public void Update(SalesModel sales)
