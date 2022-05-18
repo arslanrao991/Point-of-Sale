@@ -53,7 +53,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 656);
+            this.panel1.Size = new System.Drawing.Size(200, 638);
             this.panel1.TabIndex = 0;
             // 
             // button5
@@ -419,7 +419,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1173, 656);
+            this.ClientSize = new System.Drawing.Size(1175, 638);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
@@ -438,6 +438,8 @@
             this.StateActive.Border.Rounding = 20;
             this.StateActive.Border.Width = 1;
             this.Text = "Inventory Management System";
+            this.TransparencyKey = System.Drawing.Color.White;
+            this.Load += new System.EventHandler(this.Form0_Load_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -37,5 +37,17 @@ namespace IMS.Views
         private void button5_Click(object sender, EventArgs e)
         {
         }
+
+        private void Form0_Load_1(object sender, EventArgs e)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is MdiClient)
+                {
+
+                    control.BackColor = Color.DarkGray;
+                }
+            }
+        }
     }
 }
