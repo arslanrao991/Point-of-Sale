@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -61,18 +61,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.dataGridViewAccuredPayment = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.acTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.acAmount = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.acPhoneNo = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.acBtn1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccuredPayment)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -646,8 +649,10 @@
             // 
             // dataGridView
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -785,8 +790,11 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.tabPage3.Controls.Add(this.kryptonDataGridView1);
-            this.tabPage3.Controls.Add(this.kryptonTextBox1);
+            this.tabPage3.Controls.Add(this.acAmount);
+            this.tabPage3.Controls.Add(this.acPhoneNo);
+            this.tabPage3.Controls.Add(this.acBtn1);
+            this.tabPage3.Controls.Add(this.dataGridViewAccuredPayment);
+            this.tabPage3.Controls.Add(this.acTextBox);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Location = new System.Drawing.Point(8, 59);
             this.tabPage3.Name = "tabPage3";
@@ -795,44 +803,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Accured Payments";
             // 
-            // kryptonDataGridView1
+            // dataGridViewAccuredPayment
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.kryptonDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.kryptonDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewAccuredPayment.AllowUserToAddRows = false;
+            this.dataGridViewAccuredPayment.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.dataGridViewAccuredPayment.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewAccuredPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(52, 156);
-            this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(6);
-            this.kryptonDataGridView1.Name = "kryptonDataGridView1";
-            this.kryptonDataGridView1.RowHeadersWidth = 75;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(1801, 727);
-            this.kryptonDataGridView1.TabIndex = 18;
+            this.dataGridViewAccuredPayment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAccuredPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAccuredPayment.Location = new System.Drawing.Point(52, 156);
+            this.dataGridViewAccuredPayment.Margin = new System.Windows.Forms.Padding(6);
+            this.dataGridViewAccuredPayment.Name = "dataGridViewAccuredPayment";
+            this.dataGridViewAccuredPayment.RowHeadersWidth = 75;
+            this.dataGridViewAccuredPayment.Size = new System.Drawing.Size(1801, 727);
+            this.dataGridViewAccuredPayment.TabIndex = 18;
             // 
-            // kryptonTextBox1
+            // acTextBox
             // 
-            this.kryptonTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.acTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.kryptonTextBox1.Location = new System.Drawing.Point(52, 59);
-            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(1544, 59);
-            this.kryptonTextBox1.StateCommon.Back.Color1 = System.Drawing.Color.White;
-            this.kryptonTextBox1.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.kryptonTextBox1.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.acTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.acTextBox.Location = new System.Drawing.Point(52, 59);
+            this.acTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.acTextBox.Name = "acTextBox";
+            this.acTextBox.Size = new System.Drawing.Size(1544, 59);
+            this.acTextBox.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.acTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acTextBox.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acTextBox.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 20;
-            this.kryptonTextBox1.StateCommon.Border.Width = 3;
-            this.kryptonTextBox1.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
-            this.kryptonTextBox1.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.kryptonTextBox1.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.kryptonTextBox1.TabIndex = 17;
-            this.kryptonTextBox1.Text = "Search";
+            this.acTextBox.StateCommon.Border.Rounding = 20;
+            this.acTextBox.StateCommon.Border.Width = 3;
+            this.acTextBox.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.acTextBox.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.acTextBox.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.acTextBox.TabIndex = 17;
+            this.acTextBox.Text = "Search";
             // 
             // button3
             // 
@@ -866,6 +876,111 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // acAmount
+            // 
+            this.acAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.acAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.acAmount.Location = new System.Drawing.Point(496, 917);
+            this.acAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.acAmount.Name = "acAmount";
+            this.acAmount.Size = new System.Drawing.Size(339, 59);
+            this.acAmount.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.acAmount.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acAmount.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acAmount.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acAmount.StateCommon.Border.Rounding = 20;
+            this.acAmount.StateCommon.Border.Width = 3;
+            this.acAmount.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.acAmount.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.acAmount.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.acAmount.TabIndex = 37;
+            this.acAmount.Text = "Received Amount";
+            // 
+            // acPhoneNo
+            // 
+            this.acPhoneNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.acPhoneNo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.acPhoneNo.Location = new System.Drawing.Point(59, 917);
+            this.acPhoneNo.Margin = new System.Windows.Forms.Padding(4);
+            this.acPhoneNo.Name = "acPhoneNo";
+            this.acPhoneNo.Size = new System.Drawing.Size(424, 59);
+            this.acPhoneNo.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.acPhoneNo.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acPhoneNo.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.acPhoneNo.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acPhoneNo.StateCommon.Border.Rounding = 20;
+            this.acPhoneNo.StateCommon.Border.Width = 3;
+            this.acPhoneNo.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.acPhoneNo.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.acPhoneNo.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.acPhoneNo.TabIndex = 36;
+            this.acPhoneNo.Text = "Phone No";
+            // 
+            // acBtn1
+            // 
+            this.acBtn1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.acBtn1.Location = new System.Drawing.Point(1535, 903);
+            this.acBtn1.Margin = new System.Windows.Forms.Padding(6);
+            this.acBtn1.Name = "acBtn1";
+            this.acBtn1.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
+            this.acBtn1.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
+            this.acBtn1.OverrideDefault.Back.ColorAngle = 45F;
+            this.acBtn1.OverrideDefault.Back.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.acBtn1.OverrideDefault.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(254)))));
+            this.acBtn1.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(244)))));
+            this.acBtn1.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acBtn1.OverrideDefault.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.acBtn1.OverrideDefault.Border.Rounding = 20;
+            this.acBtn1.OverrideDefault.Border.Width = 1;
+            this.acBtn1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.acBtn1.Size = new System.Drawing.Size(318, 73);
+            this.acBtn1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateCommon.Back.ColorAngle = 45F;
+            this.acBtn1.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateCommon.Border.ColorAngle = 45F;
+            this.acBtn1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acBtn1.StateCommon.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.acBtn1.StateCommon.Border.Rounding = 20;
+            this.acBtn1.StateCommon.Border.Width = 1;
+            this.acBtn1.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.acBtn1.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.acBtn1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acBtn1.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
+            this.acBtn1.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
+            this.acBtn1.StatePressed.Back.ColorAngle = 135F;
+            this.acBtn1.StatePressed.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(145)))), ((int)(((byte)(198)))));
+            this.acBtn1.StatePressed.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(121)))), ((int)(((byte)(206)))));
+            this.acBtn1.StatePressed.Border.ColorAngle = 135F;
+            this.acBtn1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acBtn1.StatePressed.Border.Rounding = 20;
+            this.acBtn1.StatePressed.Border.Width = 1;
+            this.acBtn1.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
+            this.acBtn1.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateTracking.Back.ColorAngle = 45F;
+            this.acBtn1.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
+            this.acBtn1.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
+            this.acBtn1.StateTracking.Border.ColorAngle = 45F;
+            this.acBtn1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.acBtn1.StateTracking.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.AntiAlias;
+            this.acBtn1.StateTracking.Border.Rounding = 20;
+            this.acBtn1.StateTracking.Border.Width = 1;
+            this.acBtn1.TabIndex = 35;
+            this.acBtn1.Values.Text = "Add Payment";
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -885,7 +1000,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccuredPayment)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -925,8 +1040,11 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private System.Windows.Forms.TabPage tabPage3;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dataGridViewAccuredPayment;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox acTextBox;
         private System.Windows.Forms.Button button3;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox acAmount;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox acPhoneNo;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton acBtn1;
     }
 }

@@ -24,7 +24,9 @@ namespace IMS.Views
         bool Return_Is_Bill_Paid { get; set; }
         string PhoneNo { get; set; }
         string ReceivedAmount { get; set; }
-
+        string AccuredPhoneNo { get; set; }
+        string AccuredAmount { get; set; }
+        string SearchValueAccuredPayment { get; set; }
 
 
         //Events
@@ -35,10 +37,14 @@ namespace IMS.Views
         event EventHandler ProcessEvent;
         event EventHandler CancelEvent;
         event EventHandler ReturnSales;
+        event EventHandler AccuredPayment;
+        event EventHandler SearchEventForAccuredPayments;
 
         //Methods
         void SetSalesListBindingSource(BindingSource customerList);
         void SetCartProductsBindingSource(BindingSource cartProducts);
+
+        void SetAccuredPaymentBindingSource(BindingSource accuredPayment);
         void Show(); //Optional
     }
 }

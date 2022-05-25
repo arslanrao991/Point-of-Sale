@@ -70,7 +70,6 @@ namespace IMS._Repositories
                     var salesModel = new SalesModel();
                     if (reader.HasRows)
                     {
-
                         while (reader.Read())
                         {
                             salesModel = new SalesModel();
@@ -100,8 +99,6 @@ namespace IMS._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-
-
                 command.CommandText = "SELECT SalesDetails.*, Sales.Customer_ID FROM SalesDetails join Sales on SalesDetails.Sales_ID=Sales.Sales_ID where Sales.Sales_ID=@sales_id or Product_ID=@product_id or Customer_ID=@customer_id ORDER BY Sales_ID DESC";
                 command.Parameters.Add("@sales_id", SqlDbType.Int).Value = sales_id;
                 command.Parameters.Add("@product_id", SqlDbType.Int).Value = product_id;
@@ -133,7 +130,7 @@ namespace IMS._Repositories
 
         public int ReturnSale(int salesId, int product_id, int quantity, int is_bill_paid)
         {
-            ;
+            
             var customerList = new List<CustomerModel>();
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("ReturnSalesTransaction", connection))
@@ -154,6 +151,101 @@ namespace IMS._Repositories
         public void Update(SalesModel sales)
         {
             
+        }
+
+        public int AddAccuredPayment(string phone, double payment)
+        {
+            var accuredPaymentList = new List<AccuredPaymentsModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("AddAccuredPayment", connection))
+            {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@ph", phone);
+                command.Parameters.Add("@payment", payment);
+
+
+                command.ExecuteReader();
+            }
+
+            return 1;
+        }
+
+        public IEnumerable<AccuredPaymentsModel> GetAllAccuredPayments()
+        {
+            var accuredPaymentList = new List<AccuredPaymentsModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Select Receipt_ID, Customer_ID, Customer_Name, Customer_Phone_No, Paid_Price From Accured_Payments join Customer on Accured_Payments.Customer_ID=Customer.ID";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var paymentModel = new AccuredPaymentsModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            paymentModel = new AccuredPaymentsModel();
+                            paymentModel.Id = (int)reader["Receipt_ID"];
+                            paymentModel.CusotmerID = (int)reader["Customer_ID"];
+                            paymentModel.Name = (string)reader["Customer_Name"];
+                            paymentModel.Phone = (string)reader["Customer_Phone_No"];
+                            paymentModel.Price = (double)reader["Paid_Price"];
+                            accuredPaymentList.Add(paymentModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return accuredPaymentList;
+        }
+
+        public IEnumerable<AccuredPaymentsModel> GetByValueAccuredPayments(string value)
+        {
+            int id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            int customer_id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            string customer_phone = value;
+
+
+            var accuredPaymentList = new List<AccuredPaymentsModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Select Receipt_ID, Customer_ID, Customer_Name, Customer_Phone_No, Paid_Price From Accured_Payments join Customer on Accured_Payments.Customer_ID=Customer.ID where Receipt_ID=@id or Customer_ID=@customer_id or Customer_Phone_No=@customer_phone ORDER BY Receipt_ID DESC";
+                
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                command.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
+                command.Parameters.Add("@customer_phone", SqlDbType.VarChar).Value = customer_phone;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var paymentModel = new AccuredPaymentsModel();
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            paymentModel = new AccuredPaymentsModel();
+                            paymentModel.Id = (int)reader["Receipt_ID"];
+                            paymentModel.CusotmerID = (int)reader["Customer_ID"];
+                            paymentModel.Name = (string)reader["Customer_Name"];
+                            paymentModel.Phone = (string)reader["Customer_Phone_No"];
+                            paymentModel.Price = (double)reader["Paid_Price"];
+                            accuredPaymentList.Add(paymentModel);
+                        }
+                    }
+                    reader.Close();
+
+                }
+            }
+            return accuredPaymentList;
         }
     }
 }

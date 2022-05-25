@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AccuredPaymentsModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ICustomerRepository.cs" />
     <Compile Include="Models\IProductRepository.cs" />

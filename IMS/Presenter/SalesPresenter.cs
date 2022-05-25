@@ -17,15 +17,18 @@ namespace IMS.Presenter
         private ISalesRepository repository;
         private BindingSource salesBindingSource;
         private BindingSource prodductBindindSource;
+        private BindingSource accuredPaymentBindingSource;
         private DataTable table;
 
         private IEnumerable<SalesModel> salesList;
+        private IEnumerable<AccuredPaymentsModel> accuredPayments;
 
         //Constructor
         public SalesPresenter(ISalesView view, ISalesRepository repository)
         {
             this.salesBindingSource = new BindingSource();
             this.prodductBindindSource = new BindingSource();
+            this.accuredPaymentBindingSource = new BindingSource();
             this.view = view;
             this.repository = repository;
 
@@ -41,16 +44,36 @@ namespace IMS.Presenter
             this.view.ProcessEvent += ProcessSales;
             this.view.CancelEvent += CancelAction;
             this.view.ReturnSales += ReturnSales;
+            this.view.AccuredPayment += AccuredPayment;
+            this.view.SearchEventForAccuredPayments += SearchEventForAccuredPayments;
+
 
             //Set product binding source
             this.view.SetSalesListBindingSource(salesBindingSource);
             this.view.SetCartProductsBindingSource(prodductBindindSource);
+            this.view.SetAccuredPaymentBindingSource(accuredPaymentBindingSource);
 
             //Load data to the product list
             LoadAllSalesList();
 
             //Show View
             this.view.Show();
+        }
+
+        private void SearchEventForAccuredPayments(object sender, EventArgs e)
+        {
+            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValueAccuredPayment);
+            if (emptyValue == false)
+                accuredPayments = repository.GetByValueAccuredPayments(this.view.SearchValueAccuredPayment);
+            else accuredPayments = repository.GetAllAccuredPayments();
+            accuredPaymentBindingSource.DataSource = accuredPayments;
+        }
+
+        private void AccuredPayment(object sender, EventArgs e)
+        {
+            string phone = view.AccuredPhoneNo;
+            double payment = Convert.ToDouble(view.AccuredAmount);
+            repository.AddAccuredPayment(phone, payment);
         }
 
         private void ReturnSales(object sender, EventArgs e)
@@ -72,7 +95,11 @@ namespace IMS.Presenter
         private void LoadAllSalesList()
         {
             salesList = repository.GetAll();
-            salesBindingSource.DataSource = salesList;  //Set data source.
+            salesBindingSource.DataSource = salesList; 
+
+            accuredPayments = repository.GetAllAccuredPayments();
+            accuredPaymentBindingSource.DataSource = accuredPayments;
+
         }
 
         private void CleanViewFeilds()

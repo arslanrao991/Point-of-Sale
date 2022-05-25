@@ -65,8 +65,6 @@ namespace IMS.Views
             get { return textBox7.Text; }
             set { textBox7.Text = value; }
         }
-
-
         public string ReceivedAmount
         {
             get { return rcTextBox.Text; }
@@ -84,6 +82,23 @@ namespace IMS.Views
             set { phTextBox.Text = value; }
         }
 
+        public string AccuredPhoneNo
+        {
+            get { return acPhoneNo.Text; }
+            set { acPhoneNo.Text = value; }
+        }
+        public string AccuredAmount
+        {
+            get { return acAmount.Text; }
+            set { acAmount.Text = value; }
+        }
+
+        public string SearchValueAccuredPayment
+        {
+            get { return acTextBox.Text; }
+            set { acTextBox.Text = value; }
+        }
+
         public Form4()
         {
             InitializeComponent();
@@ -98,6 +113,8 @@ namespace IMS.Views
             btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnGenerate.Click += delegate { ProcessEvent?.Invoke(this, EventArgs.Empty); };
             button2.Click += delegate { ReturnSales?.Invoke(this, EventArgs.Empty); };
+            acBtn1.Click += delegate { AccuredPayment?.Invoke(this, EventArgs.Empty); };
+            button3.Click  += delegate { SearchEventForAccuredPayments?.Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -108,8 +125,8 @@ namespace IMS.Views
         public event EventHandler ProcessEvent;
         public event EventHandler CancelEvent;
         public event EventHandler ReturnSales;
-
-
+        public event EventHandler AccuredPayment;
+        public event EventHandler SearchEventForAccuredPayments;
 
         public void SetSalesListBindingSource(BindingSource customerList)
         {
@@ -118,6 +135,10 @@ namespace IMS.Views
         public void SetCartProductsBindingSource(BindingSource cartProducts)
         {
             dataGridView1.DataSource = cartProducts;
+        }
+        public void SetAccuredPaymentBindingSource(BindingSource accuredPayment)
+        {
+            dataGridViewAccuredPayment.DataSource = accuredPayment;
         }
 
         //Singleton Pattern
@@ -154,6 +175,5 @@ namespace IMS.Views
         {
             rcTextBox.Text = "";
         }
-
     }
 }

@@ -33,8 +33,10 @@ create Table Supplier(
 	Supplier_Name varchar(50),
 	Supplier_Phone_No varchar(20) NOT NULL,
 	Supplier_Email varchar(50),
-	Supplier_Address varchar(50));
+	Supplier_Address varchar(50)
+	Unique(Supplier_Phone_No));
 
+drop table Supplier
 select* from SupplyingOrder
 insert into SupplyingOrder values(1, 1, getdate()-1);
 insert into SupplyingOrder values(1, 2, getdate()-1);
@@ -189,7 +191,7 @@ Set Transaction ISOLATION LEVEL READ UNCOMMITTED
 Begin Transaction
 Save Transaction recent;
 	DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar(20), @if_Ph_exist int, @per_unit_price float,
-		@if_sales_table_is_empty int
+		@if_sales_table_is_empty int, @idac int
 	SET @Counter=1
 	SET @ph = @phone
 
@@ -199,6 +201,8 @@ Save Transaction recent;
 	begin
 		select top 1 @id = Customer.ID+1 From Customer order by ID desc
 		insert into Customer values(@id, 'Default',  @ph, '', '');
+		select top 1 @idac = (Accured_Payments.Receipt_ID + 1) From Accured_Payments order by Receipt_ID desc
+		insert into Accured_Payments values(@idac, @id, 0)
 	end
 	else 
 	begin
@@ -252,7 +256,7 @@ Begin Transaction
 Save Transaction recent
 	begin try
 		DECLARE @quantity int, @if_Sale_exist int, @per_unit_price float,
-				@if_product_exist int, @price float 
+				@if_product_exist int, @price float, @c_id int
 
 		SELECT @if_Sale_exist=COUNT(A.Sales_ID) from(select Sales.Sales_ID from Sales where Sales.Sales_ID = @sid) as A
 		if (@if_Sale_exist = 0)
@@ -272,7 +276,7 @@ Save Transaction recent
 				if(@quantity>=@quantity2 and @is_bill_paid=1)
 				begin 
 					update Sales set Sales.Total_Bill= (Sales.Total_Bill - (@quantity2*@price)), 
-						Sales.Paid_Bill = (Sales.Paid_Bill - (@quantity*@price))
+						Sales.Paid_Bill = (Sales.Paid_Bill - (@quantity2*@price))
 						where Sales.Sales_ID = @sid
 					update SalesDetails set Quantity = Quantity - @quantity2 
 						where Sales_ID = @sid and Product_ID = @pid
@@ -281,9 +285,17 @@ Save Transaction recent
 				end
 				else
 				begin 
+					Declare @temp_total float, @temp_paid float, @cid int
+					select @cid = Sales.Customer_ID from Sales where Sales.Sales_ID=@sid
+					select @temp_total = Sales.Total_Bill, @temp_paid = Sales.Paid_Bill from Sales where Sales.Sales_ID = @sid
+					
+					if(@temp_total - (@temp_total - (@quantity2*@price))<@temp_paid)
+					begin
+						set @temp_paid=(@temp_total - (@quantity2*@price))
+					end
 					if(@quantity>=@quantity2 and @is_bill_paid=0)
 					begin 
-						update Sales set Sales.Total_Bill= (Sales.Total_Bill - (@quantity2*@price))
+						update Sales set Sales.Total_Bill= (Sales.Total_Bill - (@quantity2*@price)), Sales.Paid_Bill = @temp_paid
 							where Sales.Sales_ID = @sid
 						update SalesDetails set Quantity = Quantity - @quantity2 
 							where Sales_ID = @sid and Product_ID = @pid
@@ -318,7 +330,7 @@ Save Transaction recent;
 		if (@if_Ph_exist = 0)
 		begin
 			insert into Customer values(@c_id, @name,  @ph, @email, @address);
-			select top 1 @id2 = Accured_Payments.Receipt_ID + 1 From Accured_Payments order by Receipt_ID desc
+			select top 1 @id2 = (Accured_Payments.Receipt_ID + 1) From Accured_Payments order by Receipt_ID desc
 			insert into Accured_Payments values(@id2, @c_id, 0)
 		end
 		else 
@@ -333,6 +345,22 @@ Save Transaction recent;
 
 	commit transaction
 	return 1
+END
+
+/*Add Accured Payment */
+create Procedure AddAccuredPayment (@ph varchar(20), @payment float)
+As Begin
+	Declare @customerId int, @if_Ph_exist int, @receiptId int
+
+	SELECT @if_Ph_exist=COUNT(A.ID) from(select Customer.ID from Customer where Customer.Customer_Phone_No = @ph) as A
+	if(@if_Ph_exist != 0)
+	begin
+		select @customerId = Customer.ID From Customer where Customer.Customer_Phone_No=@ph	
+		select top 1 @receiptId = (Accured_Payments.Receipt_ID + 1) From Accured_Payments order by Receipt_ID desc
+		insert into Accured_Payments values(@receiptId, @customerId, @payment)
+		return 1;
+	end
+	return 0;
 END
 
 
