@@ -293,8 +293,17 @@ DECLARE @Counter INT, @id int, @sid int, @quantity int, @result int, @ph varchar
 	end
 	
 
+	//------------------Query for top customers
+	select C.ID, sum(S.Total_Bill) as [SUM] from Sales as S inner join Customer as C
+						on S.Customer_ID = C.ID
+	group by C.ID
+	order by [SUM]
 
+	//------------------Query for top categories
+	select P.Product_Category, sum(S.Total_Bill) as [SUM] from Sales as S 
+							inner join SalesDetails as SD on S.Sales_ID = SD.Sales_ID
+							inner join Products as P on P.ID = SD.Product_ID
+	group by P.Product_Category
+	order by [SUM]
 
-
-
-
+	select * from Products
