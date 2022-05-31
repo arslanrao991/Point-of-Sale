@@ -36,7 +36,7 @@ namespace IMS._Repositories
                             customerReportModel = new CReportsModel();
                             customerReportModel.Id = (int)reader["ID"];
                             customerReportModel.Name = (string)reader["Customer_Name"].ToString();
-                            customerReportModel.Sales = (int)reader["SUM"];
+                            customerReportModel.Sales = (double)reader["SUM"];
                             CustomerList.Add(customerReportModel);
                         }
                     }
@@ -67,7 +67,7 @@ namespace IMS._Repositories
                             prodReportModel = new PReportsModel();
                             prodReportModel.Id = (int)reader["ID"];
                             prodReportModel.Name = (string)reader["Product_Name"].ToString();
-                            prodReportModel.Sales = (int)reader["SUM"];
+                            prodReportModel.Sales = Convert.ToDouble (reader["SUM"]);
                             ProductList.Add(prodReportModel);
                         }
                     }

@@ -380,3 +380,5 @@ END
 	select sum(S.Total_Bill)as [MonthlySales], MONTH(S.[Date]) as [Month], YEAR(S.[Date]) as [Year]
 	from Sales S
 	group by MONTH(S.[Date]), YEAR(S.[Date])
+
+	

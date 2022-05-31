@@ -55,11 +55,13 @@ namespace IMS.Presenter
         }
         private void AddProductList(object sender, EventArgs e)
         {
-
+            productList = repository.GetProductList();
+            ReportsBindingSource.DataSource = productList;  //Set data source.
         }
         private void AddCustList(object sender, EventArgs e)
         {
-
+            customerList = repository.GetCustomerList();
+            ReportsBindingSource.DataSource = customerList;  //Set data source.
         }
         private void SaveReports(object sender, EventArgs e)
         {

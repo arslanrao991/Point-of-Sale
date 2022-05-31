@@ -13,7 +13,7 @@ namespace IMS.Models
         //Fields
         private int id;
         private string name;
-        private int sales;
+        private double sales;
 
         //Properties 
         [DisplayName("Product ID")]
@@ -26,7 +26,7 @@ namespace IMS.Models
 
         [DisplayName("Sales")]
         [Required(ErrorMessage = "Sales not mentioned")]
-        public int Sales { get => sales; set => sales = value; }
+        public double Sales { get => sales; set => sales = value; }
 
 
     }
@@ -34,7 +34,7 @@ namespace IMS.Models
     {
         private int id;
         private string name;
-        private int sales;
+        private double sales;
         //Properties 
         [DisplayName("Product ID")]
         [Required(ErrorMessage = "Product name is required")]
@@ -46,6 +46,6 @@ namespace IMS.Models
 
         [DisplayName("Sales")]
         [Required(ErrorMessage = "Sales not mentioned")]
-        public int Sales { get => sales; set => sales = value; }
+        public double Sales { get => sales; set => sales = value; }
     }
 }

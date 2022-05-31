@@ -22,6 +22,7 @@ namespace IMS.Presenter
             this.mainView.ShowCustomerView += ShowCustomerView;
             this.mainView.ShowSupplierView += ShowSupplierView;
             this.mainView.ShowSalesView += ShowSalesView;
+            this.mainView.ShowReportsView += ShowReportsView;
             
         }
 
@@ -52,7 +53,7 @@ namespace IMS.Presenter
             ISalesRepository repo = new SalesRepository(sqlConnectionString);
             new SalesPresenter(view, repo);
         }
-        private void ShowReportsView()
+        private void ShowReportsView(object sender, EventArgs e)
         {
             IReportsView view = Form5_reports.GetInstance((Form0)mainView);
             IReportsRepository repo = new ReportsRepository(sqlConnectionString);
