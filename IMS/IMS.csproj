@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,7 +36,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
+    <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Docking">
@@ -67,9 +86,11 @@
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ICustomerRepository.cs" />
     <Compile Include="Models\IProductRepository.cs" />
+    <Compile Include="Models\IReportsRepository.cs" />
     <Compile Include="Models\ISalesRepository.cs" />
     <Compile Include="Models\ISupplierRepository.cs" />
     <Compile Include="Models\ProductsModel.cs" />
+    <Compile Include="Models\ReportsModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\SalesProductModel.cs" />
     <Compile Include="Models\SupplierModel.cs" />
@@ -77,6 +98,7 @@
     <Compile Include="Presenter\CustomerPresenter.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
     <Compile Include="Presenter\ProductPresenter.cs" />
+    <Compile Include="Presenter\ReportsPresenter.cs" />
     <Compile Include="Presenter\SalesPresenter.cs" />
     <Compile Include="Presenter\SupplierPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -111,14 +133,22 @@
     <Compile Include="Views\Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Form5_reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Form5_reports.Designer.cs">
+      <DependentUpon>Form5_reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ICustomerView.cs" />
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\IProductView.cs" />
+    <Compile Include="Views\IReportsView.cs" />
     <Compile Include="Views\ISalesView.cs" />
     <Compile Include="Views\ISupplierView.cs" />
     <Compile Include="_Repositories\BaseRepository.cs" />
     <Compile Include="_Repositories\CustomerRepository.cs" />
     <Compile Include="_Repositories\ProductRepository.cs" />
+    <Compile Include="_Repositories\ReportsRepository.cs" />
     <Compile Include="_Repositories\SalesRepository.cs" />
     <Compile Include="_Repositories\SupplierRepository.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -147,6 +177,9 @@
     <EmbeddedResource Include="Views\Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Form5_reports.resx">
+      <DependentUpon>Form5_reports.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,6 +198,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-cancel-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

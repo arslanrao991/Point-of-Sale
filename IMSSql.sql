@@ -182,13 +182,8 @@ END
 
 
 /*SELECT SalesDetails.*, Sales.Customer_ID FROM SalesDetails join Sales on SalesDetails.Sales_ID=Sales.Sales_ID ORDER BY Sales_ID DESC*/
-<<<<<<< Updated upstream
 
 
-=======
-
-
->>>>>>> Stashed changes
 /* SALES TRANSACTION */
 create Procedure ProcessSalesTransaction (@cart MyTableType readonly, @products_count int, @phone varchar(20), @total float, @paid float)
 As Begin
@@ -251,13 +246,8 @@ Save Transaction recent;
 	set @result = 1
 	return @result;
 End
-<<<<<<< Updated upstream
 
 
-=======
-
-
->>>>>>> Stashed changes
 /* RETURN SALES Transaction*/
 create Procedure ReturnSalesTransaction (@sid int, @pid int, @quantity2 int, @is_bill_paid int)
 As Begin
@@ -373,14 +363,6 @@ As Begin
 	return 0;
 END
 
-<<<<<<< Updated upstream
-
-
-
-
-
-
-=======
 	//------------------Query for top customers
 	select Top 5(C.ID), C.Customer_Name, sum(S.Total_Bill) as [SUM] from Sales as S inner join Customer as C
 						on S.Customer_ID = C.ID
@@ -397,6 +379,4 @@ END
 	//------------------Query for Monthly Sales
 	select sum(S.Total_Bill)as [MonthlySales], MONTH(S.[Date]) as [Month], YEAR(S.[Date]) as [Year]
 	from Sales S
-	group by MONTH(S.[Date]), YEAR(S.[Date]) 
-	--order by 
->>>>>>> Stashed changes
+	group by MONTH(S.[Date]), YEAR(S.[Date])

@@ -21,6 +21,7 @@ namespace IMS.Views
             button4.Click += delegate { ShowSupplierView?.Invoke(this, EventArgs.Empty); };
             button2.Click += delegate { ShowSalesView?.Invoke(this, EventArgs.Empty); };
             button5.Click += delegate { ShowReportsView?.Invoke(this, EventArgs.Empty); };
+
         }
 
         public event EventHandler ShowProductView;
@@ -48,6 +49,11 @@ namespace IMS.Views
                     control.BackColor = Color.DarkGray;
                 }
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

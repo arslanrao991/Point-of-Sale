@@ -52,5 +52,11 @@ namespace IMS.Presenter
             ISalesRepository repo = new SalesRepository(sqlConnectionString);
             new SalesPresenter(view, repo);
         }
+        private void ShowReportsView()
+        {
+            IReportsView view = Form5_reports.GetInstance((Form0)mainView);
+            IReportsRepository repo = new ReportsRepository(sqlConnectionString);
+            new ReportsPresenter(view, repo);
+        }
     }
 }
