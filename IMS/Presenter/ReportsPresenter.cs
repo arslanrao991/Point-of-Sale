@@ -31,15 +31,14 @@ namespace IMS.Presenter
             this.view.AddProdEvent += AddProductList;
             this.view.AddCustEvent += AddCustList;
 
-            
+
             //Set product binding source
-            this.view.SetCReportListBindingSource(ReportsBindingSource);
-            this.view.SetPReportListBindingSource(ReportsBindingSource);
+            this.view.SetReportListBindingSource(ReportsBindingSource);
 
             //Load data to the product list
-            //LoadAllPReportsList();
+            LoadAllPReportsList();
             //Load data to the customer list
-            // LoadAllCReportsList();
+            LoadAllCReportsList();
 
             //Show View
             this.view.Show();
@@ -49,22 +48,20 @@ namespace IMS.Presenter
             customerList = repository.GetCustomerList();
             ReportsBindingSource.DataSource = customerList;  //Set data source.
         }
-        //private void LoadAllPReportsList()
-        //{
-        //    productList = repository.GetProductList();
-        //    ReportsBindingSource.DataSource = productList;  //Set data source.
-        //}
+        private void LoadAllPReportsList()
+        {
+            productList = repository.GetProductList();
+            ReportsBindingSource.DataSource = productList;  //Set data source.
+        }
         private void AddProductList(object sender, EventArgs e)
         {
             productList = repository.GetProductList();
             ReportsBindingSource.DataSource = productList;  //Set data source.
-            this.view.setProdListPDF(productList);
         }
         private void AddCustList(object sender, EventArgs e)
         {
             customerList = repository.GetCustomerList();
             ReportsBindingSource.DataSource = customerList;  //Set data source.
-            this.view.setCustListPDF(customerList);
         }
         private void SaveReports(object sender, EventArgs e)
         {

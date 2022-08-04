@@ -363,47 +363,22 @@ As Begin
 	return 0;
 END
 
-	------------------Query for top customers
+	//------------------Query for top customers
 	select Top 5(C.ID), C.Customer_Name, sum(S.Total_Bill) as [SUM] from Sales as S inner join Customer as C
 						on S.Customer_ID = C.ID
 	group by C.ID, C.Customer_Name
 	order by [SUM]
 
-	------------------Query for top Products
+	//------------------Query for top Products
 	select Top 5(P.ID), P.Product_Name, sum(S.Total_Bill) as [SUM] from Sales as S 
 							inner join SalesDetails as SD on S.Sales_ID = SD.Sales_ID
 							inner join Products as P on P.ID = SD.Product_ID
 	group by P.ID, P.Product_Name
 	order by [SUM]
 
-	------------------Query for Monthly Sales
+	//------------------Query for Monthly Sales
 	select sum(S.Total_Bill)as [MonthlySales], MONTH(S.[Date]) as [Month], YEAR(S.[Date]) as [Year]
 	from Sales S
 	group by MONTH(S.[Date]), YEAR(S.[Date])
 
-	select sum(S.Total_Bill)as [MonthlySales]
-	from Sales S
-	where MONTH(S.[Date]) =5
-
-
-	--------------Num Items
-	select COUNT(*) as numItems from Products P
-	select COUNT(*) as numItems from Customer P
-
-
-	--------------Total Orders from a particular time period
-	select getdate()-29;
-	declare @fromDate datetime = getdate();
-	declare @toDate  datetime = getdate() -30;
-	select count(*) as numItems from Sales S where S.[Date] between @toDate and @fromDate
-
-	-----------------Get current year
-	select year(getdate()) as Year
-
-
-	------------------Understocked Products
-	select P.ID, P.Product_Name, P.Product_Quantity from Products P where P.Product_Quantity<20
-
-	--------------------Total Sales
-	select sum(S.Total_Bill) as TotalRevenue from Sales S 
-	where YEAR(S.[Date]) = YEAR(getdate())
+	
