@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using iText;
+using IMS.Models;
 namespace IMS.Views
 {
     public interface IReportsView
@@ -23,7 +24,10 @@ namespace IMS.Views
         event EventHandler CancelEvent;
 
         //Methods
-        void SetReportListBindingSource(BindingSource reportList);
+        void SetPReportListBindingSource(BindingSource reportList);
+        void SetCReportListBindingSource(BindingSource reportList );
+        void setCustListPDF(IEnumerable<CReportsModel> customerList);
+        void setProdListPDF(IEnumerable<PReportsModel> productList);
         void Show(); //Optional
     }
 }

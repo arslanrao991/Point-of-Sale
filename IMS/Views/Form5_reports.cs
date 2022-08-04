@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using iText;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using IMS.Models;
 
 namespace IMS.Views
 {
@@ -17,10 +22,16 @@ namespace IMS.Views
         private bool isSuccess;
         private string message;
 
+
+        public IEnumerable<CReportsModel> customerList;
+        public IEnumerable<PReportsModel> productList;
         public Form5_reports()
         {
+            customerList = null;
             InitializeComponent();
             AssociateandRaiseViewEvents();
+            //tabControl1.TabPages.Remove(tabPage2);
+            //tabControl1.TabPages.Add(tabPage1);
             button5.Click += delegate { this.Close(); };
         }
 
@@ -30,29 +41,56 @@ namespace IMS.Views
             button4.Click += delegate
             {
                 AddCustEvent?.Invoke(this, EventArgs.Empty);
-                tabControl1.TabPages.Remove(tabPage2);
-                tabControl1.TabPages.Add(tabPage1);
-                tabPage1.Text = "Customers";
+                //tabControl1.TabPages.Remove(tabPage2);
+                //tabControl1.TabPages.Add(tabPage1);
+                //tabPage1.Text = "Customers";
             };
 
            
             button1.Click += delegate
-            { 
+            {
+                AddCustEvent?.Invoke(this, EventArgs.Empty);
+                string path = "E:/Customers.pdf";
+                PdfWriter writer = new PdfWriter(path);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+                document.Add(new Paragraph("IMS: Customer Report\n\n"));
+                for (int i=0; i<customerList.Count(); ++i)
+                {
+                    document.Add(new Paragraph(Convert.ToString(customerList.ElementAt(i).Id) +"\t"+ Convert.ToString(customerList.ElementAt(i).Name) +"\t" +Convert.ToString(customerList.ElementAt(i).Sales)));
+
+                }
+
+
+                document.Close();
+
             };
 
             //Edit
             button3.Click += delegate
             {
                 AddProdEvent?.Invoke(this, EventArgs.Empty);
-                tabControl1.TabPages.Remove(tabPage1);
-                tabControl1.TabPages.Add(tabPage2);
-                tabPage2.Text = "Products";
+                //tabControl1.TabPages.Remove(tabPage1);
+                //tabControl1.TabPages.Add(tabPage2);
+                //tabPage2.Text = "Products";
             };
 
             //Delete 
             button2.Click += delegate
             {
-               // DeleteEvent?.Invoke(this, EventArgs.Empty);
+                AddProdEvent?.Invoke(this, EventArgs.Empty);
+                string path = "E:/Products.pdf";
+                PdfWriter writer = new PdfWriter(path);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+                document.Add(new Paragraph("IMS: Products Report\n\n"));
+                for (int i = 0; i < productList.Count(); ++i)
+                {
+                    document.Add(new Paragraph(Convert.ToString(productList.ElementAt(i).Id) + "\t" + Convert.ToString(productList.ElementAt(i).Name) + "\t" + Convert.ToString(productList.ElementAt(i).Sales)));
+
+                }
+                document.Close();
+
 
             };
         }
@@ -99,11 +137,6 @@ namespace IMS.Views
 
         }
 
-        public void SetReportListBindingSource(BindingSource reportList)
-        {
-            dataGridView.DataSource = reportList;
-        }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -124,15 +157,39 @@ namespace IMS.Views
         {
 
         }
-
-        void IReportsView.SetReportListBindingSource(BindingSource reportList)
+        void setCustListPDF(IEnumerable<CReportsModel> customerList)
         {
-            throw new NotImplementedException();
+            this.customerList = customerList;
+        }
+        void IReportsView.SetCReportListBindingSource(BindingSource reportList)
+        {
+            kryptonDataGridView1.DataSource = reportList;
+
+        }
+        void IReportsView.SetPReportListBindingSource(BindingSource reportList)
+        {
+            kryptonDataGridView2.DataSource = reportList;
+
         }
 
-        void IReportsView.Show()
+        private void kryptonPalette1_PalettePaint(object sender, PaletteLayoutEventArgs e)
         {
-            throw new NotImplementedException();
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        void IReportsView.setProdListPDF(IEnumerable<PReportsModel> productList)
+        {
+            this.productList = productList;
+        }
+
+        void IReportsView.setCustListPDF(IEnumerable<CReportsModel> customerList)
+        {
+            this.customerList = customerList;
         }
     }
 }
